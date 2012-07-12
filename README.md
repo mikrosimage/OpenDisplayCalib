@@ -47,3 +47,6 @@ More informations
 
 - Github Wiki : 
 >[https://github.com/mikrosimage/OpenCalibrator/wiki](https://github.com/mikrosimage/OpenCalibrator/wiki)
+
+- About Color pipelines for post-production : 
+> [http://www.colorpipe.org/](http://www.colorpipe.org/)
