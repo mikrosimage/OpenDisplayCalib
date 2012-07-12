@@ -43,7 +43,7 @@ More informations
 >[https://github.com/mikrosimage/OpenCalibrator.git](https://github.com/mikrosimage/OpenCalibrator.git)  
 
 - The github issues module for bug report : 
->TODO  
+>[https://github.com/mikrosimage/OpenCalibrator/issues](https://github.com/mikrosimage/OpenCalibrator/issues) 
 
 - Github Wiki : 
 >[https://github.com/mikrosimage/OpenCalibrator/wiki](https://github.com/mikrosimage/OpenCalibrator/wiki)
