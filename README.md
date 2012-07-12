@@ -7,7 +7,7 @@ The suite is composed of two tools :
 - ColorHealer, a calibration and measurement application  
 - ColorKeeper, a color correction loader with helpful tools as screen detection, email when correction is obsolete, gamma slider, printer lights, custom 2D LUTs loader (custom LUT is applied over the correction LUT)...
 
-![ColorKeeper and ColorHealer](https://lh5.googleusercontent.com/-BxvsODZoOa0/T_7slPJUyAI/AAAAAAAAMoI/Ll9cZM_ZHZs/s820/keeper_healer_screenshot.png "ColorTribe screenshot")
+![ColorKeeper and ColorHealer](https://lh5.googleusercontent.com/-CDoPae148_k/T_7sV-kVBCI/AAAAAAAAMoA/L2w2ZbGKpvc/s820/keeper_healer_screenshot.png "ColorTribe screenshot")
 
 [More screenshots](https://github.com/mikrosimage/OpenCalibrator/wiki/Screenshots)
 ___
