@@ -20,9 +20,9 @@ ___
 Compilation
 -------
 - Getting the source  
- > git clone --recursive [git@github.com:mikrosimage/OpenCalibrator.git](git@github.com:mikrosimage/OpenCalibrator.git)  
+>  git clone --recursive [git@github.com:mikrosimage/OpenCalibrator.git](git@github.com:mikrosimage/OpenCalibrator.git)  
 - Compilation  
- > TODO
+>  TODO
 
 ___
 Tested compilers
