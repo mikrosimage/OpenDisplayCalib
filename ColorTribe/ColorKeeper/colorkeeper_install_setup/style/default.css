@@ -1,0 +1,107 @@
+QWidget 
+{
+	background-color: rgb(40,40,40) ;
+	font: 12px "URW Gothic L";
+	color: rgb(150,150,150);
+}
+
+QPushButton 
+{
+    background-color: rgb(30,30,30);
+}
+
+QGroupBox {
+	border: 2px solid rgb(30,30,30);
+     border-radius: 5px;
+     margin-top: 4ex; /* leave space at the top for the title */
+ }
+
+ QGroupBox::title {
+     subcontrol-origin: margin;
+     subcontrol-position: top center;
+ }
+ 
+ QFrame {
+      border: 1px solid rgb(35,35,35);
+      border-radius: 4px;
+      padding: 2px;
+ }
+ 
+ QHeaderView::section {
+     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                       stop:0 #616161, stop: 0.5 #505050,
+                                       stop: 0.6 #434343, stop:1 #656565);
+     color: white;
+     padding-left: 4px;
+     border: 1px solid #6c6c6c;
+ }
+
+ QScrollBar {
+	 border: 2px solid grey;
+	 background: #505050;
+	 height: 15px;
+	 margin: 0px 20px 0 20px;
+ }
+
+ QScrollBar::handle {
+	 background: #303030;
+	 min-width: 20px;
+ }
+
+ QScrollBar::add-line {
+	 border: 2px solid grey;
+	 background: #656565;
+	 width: 20px;
+	 subcontrol-position: right;
+	 subcontrol-origin: margin;
+ }
+
+ QScrollBar::sub-line {
+	 border: 2px solid grey;
+	 background: #656565;
+	 width: 20px;
+	 subcontrol-position: left;
+	 subcontrol-origin: margin;
+ }
+ 
+ QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal {
+	 border: 2px solid grey;
+	 width: 3px;
+	 height: 3px;
+	 background: white;
+ }
+
+ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+	 background: none;
+ }
+ 
+ 
+ 
+ 
+ 
+
+ 
+  QMenuBar::item:selected { /* when selected using mouse or keyboard */
+      background: #000000;
+  }
+ 
+  QMenuBar::item:pressed {
+      background: #333333;
+ }
+ 
+ 
+ 
+ 
+ 
+QMenu {
+     background-color: #333333;
+     border: 1px solid black;
+ }
+
+ QMenu::item {
+     background-color: #000000;
+ }
+
+ QMenu::item:selected {
+     background-color: #333333;
+ }

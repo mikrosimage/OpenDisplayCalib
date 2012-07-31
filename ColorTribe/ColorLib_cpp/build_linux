@@ -1,0 +1,7 @@
+#!/bin/bash
+export QTDIR=/path_to_qt_dir/qt
+export PATH=$QTDIR/bin:$PATH
+export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
+#external libs : libnv-control
+export EXTERNAL_LIBS=/path_to_externa_libs
+path_to_bjam/bjam --toolset=gcc $*

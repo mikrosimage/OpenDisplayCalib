@@ -1,0 +1,3 @@
+#!/bin/bash
+export BOOST_BUILD_PATH=path_to_boost_build/build/v2
+path_to_bjam/bjam address-model=32 architecture=x86 macosx-version=10.6 macosx-version-min=10.4 --with-macosx-sdk=/Developer/SDKs/MacOSX10.4u.sdk --toolset=darwin  $*

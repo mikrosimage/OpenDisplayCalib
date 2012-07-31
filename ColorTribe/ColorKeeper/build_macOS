@@ -1,0 +1,5 @@
+#!/bin/bash
+export BOOST_INCLUDE=path_to_boost_include/
+export BOOST_BUILD_PATH=path_to_boost_build/build/v2
+export COLORLIBBASE_LIB=path_to/ColorLib_cpp/
+path_to_bjam/bjam architecture=x86 address-model=32 macosx-version=10.6 macosx-version-min=10.5 --with-macosx-sdk=/Developer/SDKs/MacOSX10.5.sdk  --toolset=darwin $*

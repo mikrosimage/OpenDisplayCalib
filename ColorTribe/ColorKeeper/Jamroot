@@ -1,0 +1,165 @@
+# BJam makefile for ColorKeeper
+# mfe (fev 2009)
+
+import os ;
+import type ;
+import qt4 ;
+
+local BOOST_INCLUDE 		= [ modules.peek : BOOST_INCLUDE ] ;
+local QTDIR 				= [ modules.peek : QTDIR ] ;
+local MINGW_LIB 			= [ modules.peek : MINGW_LIB ] ;  
+local COLORLIBBASE_LIB 		= [ modules.peek : COLORLIBBASE_LIB ] ;  
+local COLORLIBBASE_SRC 		= [ modules.peek : COLORLIBBASE_SRC ] ;  
+local EXTERNAL_LIBS 		= [ modules.peek : EXTERNAL_LIBS ] ;  
+
+use-project /ColorLib_cpp : $(COLORLIBBASE_LIB) ;  
+
+## --- Qt GUI TOOLKIT
+if ! [ qt4.initialized ]
+{
+	ECHO "[Note] Qt4 not initialized in user-config.jam" ;
+	ECHO "[Note] > Assuming [environment variable : $(QTDIR)] as location." ;
+	using qt4 : $(QTDIR) ;
+}
+
+alias CORE_SOURCES : 
+	[ glob 
+		src/*/*.cpp
+		src/*.cpp
+		src/core/ColorKeeperModel.h
+		src/gui/GuiLoader.h
+		src/gui/QKeeperMainWindow.h
+		src/gui/QColorCronTab.h
+		src/gui/QColorCronPage.h
+		src/gui/QColorToyTab.h
+		src/gui/QColorToyPage.h
+		src/gui/QColorCalibTab.h
+		src/gui/QColorCalibPage.h
+		src/gui/QDisplayDevicesPanel.h
+		src/gui/QCalibWindow.h
+		src/gui/QDrawArea.h
+		src/gui/QLutDisplay.h
+		src/gui/QHeadedMainWidget.h
+		src/gui/QGammaSlider.h
+		src/gui/QMiniToyWindow.h
+		src/gui/QMiniGammaTab.h
+		src/gui/QMiniGammaPage.h
+		src/gui/QMiniPreviewTab.h
+		src/gui/QMiniPreviewPage.h
+		src/gui/QBalloonDialog.h
+		src/gui/QPLSlider.h
+		src/gui/QPatternsPushButton.h
+		src/gui/QPatternsWidgetItem.h
+		src/gui/QManagedApplication.h
+		src/com/CKSocketClient.h
+		src/com/LockServer.h
+		src/com/SmtpServer.h
+		src/com/SmtpAuthData.h
+		src/com/MailSender.h
+		:
+		moc_*.cpp 
+	] 	
+	/ColorLib_cpp//ColorLib
+	;
+	
+alias UI_SOURCES : [ glob src/uic/*.ui ]		
+	;
+	
+
+project ColorKeeper
+	: requirements	
+					<variant>debug:<define>DEBUG:<threading>multi		
+					<variant>release:<define>RELEASE:<threading>multi
+					
+					<include>$(BOOST_INCLUDE)
+
+					<os>LINUX:<include>"/usr/X11R6/include"
+					<os>LINUX:<include>"/usr/include"
+	 				<os>LINUX:<linkflags>"-L$(QTDIR)/lib  -L$(EXTERNAL_LIBS)/SDL_ttf-2.0.10/SDL_ttf/lib -L/usr/lib64 -LGL -L/usr/X11R6/lib"			
+	 				<os>LINUX:<linkflags>" -lpng  -lXxf86vm -lXft -lXrender -lSDL_ttf -lx86 -lGL -lXxf86vm -lx86"
+
+	 				<os>MACOSX:<linkflags>" -L$(QTDIR)/lib"
+					
+##	: default-build debug release
+	; 
+
+lib ole32 : : <file>$(MINGW_LIB)/libole32.a <os>NT ; 
+alias ole32 ;
+
+lib gdi32 : : <file>$(MINGW_LIB)/libgdi32.a <os>NT ; 
+alias gdi32 ;
+
+lib winmm : : <file>$(MINGW_LIB)/libwinmm.a <os>NT ; 
+alias winmm ;
+
+lib uuid : : <file>$(MINGW_LIB)/libuuid.a <os>NT ; 
+alias uuid ;
+
+lib oleaut32 : : <file>$(MINGW_LIB)/liboleaut32.a <os>NT ; 
+alias oleaut32 ;
+
+lib imm32 : : <file>$(MINGW_LIB)/libimm32.a <os>NT ; 
+alias imm32 ;
+
+lib winspool : : <file>$(MINGW_LIB)/libwinspool.a <os>NT ; 
+alias winspool ;
+
+lib comdlg32 : : <file>$(MINGW_LIB)/libcomdlg32.a <os>NT ; 
+alias comdlg32 ;
+
+lib ws2_32 : : <file>$(MINGW_LIB)/libws2_32.a <os>NT ; 
+alias ws2_32 ;
+
+lib opengl_32 : : <file>$(MINGW_LIB)/libopengl32.a <os>NT ; 
+alias opengl_32 ;
+
+lib x86 : : <os>LINUX ; 
+alias x86 ; 
+
+
+lib gtk : : <file>/usr/lib64/libgtk-x11-2.0.so.0.1800.6 <os>LINUX ; 
+alias gtk ; 
+
+lib glib : : <file>/usr/lib64/libglib-2.0.so.0.2200.4 <os>LINUX ; 
+alias glib ;
+
+
+lib zlib : : <file>/usr/lib/libz.dylib <os>MACOSX ; 
+alias zlib ;
+
+lib qjpeg : : <file>$(QTDIR)/plugins/imageformats/libqjpeg.a <os>MACOSX ; 
+alias qjpeg ;
+
+exe colorkeeper	:	
+				CORE_SOURCES 
+				UI_SOURCES				
+				ole32	
+				gdi32 				
+				winmm 
+				uuid 
+				oleaut32 
+				imm32 
+				winspool 
+				comdlg32 
+				ws2_32
+				opengl_32 
+				x86
+				zlib
+				qjpeg 
+				gtk
+				glib
+				: 
+				<toolset>darwin:<link>static
+				<library>/qt//QtGui/
+				<library>/qt//QtCore/
+				<library>/qt//QtNetwork/			
+				<library>/qt//QtOpenGL/			
+				<threading>multi	
+				<os>NT:<linkflags>"-mwindows"	
+				#<toolset>darwin:<linkflags>"-Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -arch i386 -arch ppc" 
+				#<toolset>darwin:<cflags>"-arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk"
+				<toolset>darwin:<linkflags>"-framework IOKit -framework ApplicationServices -framework CoreFoundation -framework Foundation"
+				<toolset>darwin:<linkflags>"-framework OpenGL -framework Carbon -framework AGL -framework AppKit -framework SystemConfiguration -framework System " 
+
+			
+				;

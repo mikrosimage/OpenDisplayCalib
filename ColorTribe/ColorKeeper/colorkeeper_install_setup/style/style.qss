@@ -1,0 +1,289 @@
+QMainWindow{
+margin-top: 0ex;
+}
+QWidget 
+{
+	background-color: rgb(45,45,45) ;	
+	color: rgb(190,190,190);
+	selection-color: rgb(210,210,210);
+	selection-background-color: rgb(65,65,65) ;
+	font: 11px ;
+}
+
+QListWidget{
+selection-background-color: rgb(250,250,250) ;
+selection-color: rgb(45,45,45) ;
+font: 9px ;
+}
+
+QLabel{
+	font: 11px ;
+}
+
+
+QPushButton, QComboBox {
+     border: 2px solid rgb(20,20,20);
+       border-top-left-radius: 6px;
+         border-top-right-radius: 6px;
+         border-bottom-left-radius: 6px;
+         border-bottom-right-radius: 6px;
+     min-width: 2em;
+     padding-left: 8px;
+     padding-right: 8px;
+     padding-top: 2px;
+     padding-bottom: 2px;
+ }
+ 
+   QSlider::groove:horizontal {
+         border: 2px solid rgb(20,20,20);
+         height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+         background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(45,45,45), stop:1 rgb(20,20,20));
+         margin: 2px 0;
+          border-radius: 5px;
+     }
+
+     QSlider::handle:horizontal {
+         background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
+         border: 2px solid rgb(20,20,20);
+         width: 18px;
+         margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+         border-radius: 3px;
+     }
+     
+ QCheckBox {
+     spacing: 5px;
+ }
+
+ QCheckBox::indicator {
+     width: 13px;
+     height: 13px;
+  
+    
+ }
+ QCheckBox::indicator:unchecked {
+     image: url(img/ck_unchecked.png);
+ }
+
+ QCheckBox::indicator:unchecked:hover {
+    image: url(img/ck_unchecked.png);
+ }
+
+ QCheckBox::indicator:unchecked:pressed {
+     image: url(img/ck_unchecked.png);
+ }
+
+ QCheckBox::indicator:checked {
+     image: url(img/ck_checked.png);
+ }
+
+ QCheckBox::indicator:checked:hover {
+    image: url(img/ck_checked.png);
+ }
+
+ QCheckBox::indicator:checked:pressed {
+     image: url(img/ck_checked.png);
+ }
+
+ QCheckBox::indicator:indeterminate:hover {
+     image: url(img/ck_unchecked.png);
+ }
+
+ QCheckBox::indicator:indeterminate:pressed {
+    image: url(img/ck_unchecked.png);
+ }
+ 
+ QPushButton:hover {
+ 	background-color: rgb(50,50,50);
+ }
+ QPushButton:pressed {
+ 	background-color: rgb(70,70,70);
+ }
+ 
+ QLineEdit {
+     border: 2px solid rgb(20,20,20);
+     border-radius: 5px;    
+     padding: 1px;
+     selection-background-color: darkgray;
+ }
+
+QDoubleSpinBox {
+     border: 2px solid rgb(20,20,20);
+     border-radius: 5px;    
+     padding: 1px;
+     selection-background-color: darkgray;
+}
+
+QDoubleSpinBox::up-button {
+     border: 1px solid rgb(20,20,20);
+     border-radius: 5px;    
+     padding: 1px;
+     selection-background-color: darkgray;
+}
+
+QDoubleSpinBox::down-button {
+     border: 1px solid rgb(20,20,20);
+     border-radius: 5px;    
+     padding: 1px;
+     selection-background-color: darkgray;
+}
+
+QIcon{
+	selection-background-color: green;
+	selection-color: green;
+}
+
+QGroupBox {
+     border: 2px solid rgb(20,20,20);
+     border-radius: 5px;
+     margin-top: 18px;/* leave space at the top for the title */
+     margin-left: 2ex;
+     
+ }
+
+QMenu{
+     border: 2px solid rgb(20,20,20);
+     border-radius: 5px;
+     margin-left: 2ex;
+     
+ }
+
+QMenu::separator {
+     height: 2px;
+     background: darkgray;
+     margin-left: 10px;
+     margin-right: 5px;
+ }
+
+
+ QGroupBox::title {
+    /*subcontrol-origin: margin;*/
+    /*subcontrol-position: top center;*/ /* position at the top center */
+     /*padding: 0 0px;*/
+     border: 2px solid rgb(20,20,20) ;       
+         border-top-left-radius: 6px;
+         border-top-right-radius: 6px;
+         border-bottom-left-radius: 6px;
+         border-bottom-right-radius: 6px;
+         min-width: 15ex;
+         
+         padding-top: 2px;
+         padding-bottom: 2px;
+         padding-left: 5px;
+         padding-right: 5px;
+         subcontrol-position: top left;
+         subcontrol-origin: margin ;
+ }
+ 
+ QFrame {
+      border: 1px solid rgb(45,45,45);
+      border-radius: 4px;
+      padding: 2px;
+ }
+ 
+ /**** TAB WIDGET ****/
+ 
+ QTabWidget::pane { /* The tab widget frame */
+         border: 2px solid rgb(20,20,20);
+ }
+
+ QTabWidget::tab-bar {
+        left: 5px; /* move to the right by 5px */
+ }
+
+     /* Style the tab using the tab sub-control. Note that   it reads QTabBar _not_ QTabWidget */
+     QTabBar::tab {
+        /* background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                     stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                     stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);*/
+         background-color: rgb(45,45,45) ;	                          
+         border: 2px solid rgb(20,20,20) ;       
+         border-top-left-radius: 6px;
+         border-top-right-radius: 6px;
+         min-width: 12ex;
+         padding-top: 5px;
+         padding-bottom: 5px;
+         padding-left: 15px;
+         padding-right: 15px;
+         
+         font: 11px bold ;
+		/*color: rgb(150,150,150);*/
+       
+     }
+
+  QTabBar::tab:!selected:hover{
+  background-color: rgb(40,40,40) ;
+  }
+     QTabBar::tab:selected {
+     	 background-color: rgb(45,45,45) ;
+         border-color: rgb(20,20,20);
+         border-bottom-color: rgb(45,45,45); /* same as pane color */
+     }
+
+     QTabBar::tab:!selected {
+         margin-top: 2px;  make non-selected tabs look smaller 
+       	 border: 2px solid rgb(25,25,25) ;
+       	 border-bottom-color: rgb(20,20,20);
+         color: rgb(90,90,90);
+         background-color: rgb(30,30,30) ;	  
+     }
+
+     /* make use of negative margins for overlapping tabs */
+     QTabBar::tab:selected {
+         /* expand/overlap to the left and right by 4px */
+         margin-left: -4px;
+         margin-right: -4px;
+     }
+
+    QTabBar::tab:first:selected {
+         margin-left: 0; /* the first selected tab has nothing to overlap with on the left */
+     }
+
+     QTabBar::tab:last:selected {
+         margin-right: 0; /* the last selected tab has nothing to overlap with on the right */
+     }
+
+ QTabBar::tab:only-one {
+     margin: 0; /* if there is only one tab, we don't want overlapping margins */
+ }
+     
+ QScrollBar {
+	 border: 2px solid grey;
+	 background: #505050;
+	 height: 15px;
+	 margin: 0px 20px 0 20px;
+ }
+
+ QScrollBar::handle {
+	 background: #303030;
+	 min-width: 20px;
+ }
+
+ QScrollBar::add-line {
+	 border: 2px solid grey;
+	 background: #656565;
+	 width: 20px;
+	 subcontrol-position: right;
+	 subcontrol-origin: margin;
+ }
+
+ QScrollBar::sub-line {
+	 border: 2px solid grey;
+	 background: #656565;
+	 width: 20px;
+	 subcontrol-position: left;
+	 subcontrol-origin: margin;
+ }
+ 
+ QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal {
+	 border: 2px solid grey;
+	 width: 3px;
+	 height: 3px;
+	 background: white;
+ }
+
+ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+	 background: none;
+ }
+ 
+
+

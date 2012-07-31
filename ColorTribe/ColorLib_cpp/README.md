@@ -1,0 +1,2 @@
+ColorLib_cpp contains, among others, code to set a 2D LUT in graphic card ramdac and to retrieve informations from monitors (Windows / MacOS / Linux).  
+From this code, you can build **ColorRamdac** and **DisplayDeviceScout** command line tools. 

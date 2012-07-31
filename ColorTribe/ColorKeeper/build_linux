@@ -1,0 +1,8 @@
+#!/bin/bash
+export QTDIR=/path_to_qt/qt
+export PATH=$QTDIR/bin:$PATH
+export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
+export BOOST_INCLUDE=path_to_boost_include/
+export COLORLIBBASE_LIB=path_to/ColorLib_cpp/
+export EXTERNAL_LIBS=path_to_external_libs
+path_to_bjam/bjam --toolset=gcc $*

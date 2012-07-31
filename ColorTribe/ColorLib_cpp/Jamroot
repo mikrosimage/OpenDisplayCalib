@@ -1,0 +1,147 @@
+# BJam makefile for ColorLib, DeviceDisplayScout, ColorRamdac
+# mfe (jan 2009)
+
+import os ;
+import type ;
+
+local MINGW_LIB 			= [ modules.peek : MINGW_LIB ] ;  
+local EXTERNAL_LIBS 			= [ modules.peek : EXTERNAL_LIBS ] ;  
+
+echo [ os.name ] ;
+	
+alias CORE_SOURCES : 
+	[ glob src/*.cpp ] 
+	[ glob src/*/*.cpp : *Main.cpp ] 				
+	[ glob src/*/*/*.cpp ] 	
+	
+	;
+	
+alias CORE_COLORRAMDAC_SOURCE :
+	[ glob src/colorRamdac/*/*.cpp ] 	
+	[ glob src/calibration/correction/*.cpp ] 
+	[ glob src/exception/*.cpp ] 
+	[ glob src/trivialLogger/*.cpp ] 
+	;
+	
+alias CORE_DEVICESCOUT_SOURCE : 
+	src/device/DisplayDeviceScoutMain.cpp src/device/DisplayDevice.cpp src/device/DisplayDeviceScout.cpp src/device/LocalHost.cpp 
+	[ glob src/device/*/*.cpp ] 
+	[ glob src/trivialLogger/*.cpp ]  	
+	;
+
+alias CORE_DEVICEENVVAR_SOURCE : 
+	src/device/DisplayDeviceEnvVarSetterMain.cpp src/device/DisplayDevice.cpp src/device/DisplayDeviceScout.cpp src/device/LocalHost.cpp
+	[ glob src/device/*/*.cpp ] 
+	[ glob src/trivialLogger/*.cpp ]  	
+	;
+	
+project ColorLib
+	: requirements
+	 <variant>debug:<define>DEBUG	
+	 <os>LINUX:<include>"/usr/X11R6/include"
+	 <os>LINUX:<include>"/usr/include"
+	 <os>LINUX:<linkflags>"-L/usr/X11R6/lib -lXxf86vm"				
+	 <os>LINUX:<linkflags>"-L/usr/lib64 -lx86"
+	 <os>LINUX:<linkflags>"-L$(EXTERNAL_LIBS)/nv_ctrl/lib -lnv-control"
+	: usage-requirements
+		<include>src/calibration 
+		<include>src/calibration/correction 
+		<include>src/color 
+		<include>src/colorRamdac
+		<include>src/colorRamdac/lutloader
+		<include>src/com
+		<include>src/device
+		<include>src/device/apidata
+		<include>src/device/ediddata
+		<include>src/device/rxdata
+		<include>src/exception
+		<include>src/profil 
+		<include>src/trivialLogger 
+		<include>$(EXTERNAL_LIBS)/nv_ctrl/include
+		<define>FTLOG 	
+		
+		
+##	: default-build debug release
+	; 
+
+lib setupapi : : <file>$(MINGW_LIB)/libsetupapi.a <os>NT ; 
+alias setupapi ;
+
+lib gdi32 : : <file>$(MINGW_LIB)/libgdi32.a <os>NT ; 
+alias gdi32 ;
+
+lib ws2_32 : : <file>$(MINGW_LIB)/libws2_32.a <os>NT ; 
+alias ws2_32 ;
+
+lib x86 : : <os>LINUX ; 
+alias x86 ; 
+
+lib nvctrl : : <file>$(EXTERNAL_LIBS)/nv_ctrl/lib/libnv-control.a <os>LINUX ; 
+alias nvctrl ;
+
+lib iphlpapi : : <file>$(MINGW_LIB)/libiphlpapi.a <os>NT ; 
+alias iphlpapi ;
+
+lib ColorLib	: 	
+				CORE_SOURCES 					 		
+				setupapi 
+				gdi32
+				ws2_32	
+				x86			
+				nvctrl 
+				iphlpapi
+				:
+				<link>static
+				<toolset>darwin:<linkflags>"-Wl,-syslibroot,/Developer/SDKs/MacOSX10.6.sdk -arch i386" 
+				#<toolset>darwin:<linkflags>"-mmacosx-version-min=10.4" 
+				#<toolset>darwin:<cflags>"-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.6.sdk" 
+				<toolset>darwin:<linkflags>"-framework IOKit -framework ApplicationServices -framework CoreFoundation"
+						
+				;
+				
+exe DisplayDeviceScout	: 	
+				CORE_DEVICESCOUT_SOURCE 					 		
+				setupapi
+				gdi32	
+				ws2_32			
+			    x86 
+			    nvctrl 	
+			    iphlpapi
+				:
+				<link>static
+				<toolset>darwin:<linkflags>"-Wl,-syslibroot,/Developer/SDKs/MacOSX10.6.sdk -arch i386" 
+				#<toolset>darwin:<linkflags>"-mmacosx-version-min=10.4" 
+				#<toolset>darwin:<cflags>"-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.6.sdk" 
+				<toolset>darwin:<linkflags>"-framework IOKit -framework ApplicationServices -framework CoreFoundation"
+				;
+
+exe DisplayDeviceEnvVarSetter	: 	
+				CORE_DEVICEENVVAR_SOURCE 					 		
+				setupapi
+				gdi32	
+				ws2_32			
+			    x86 
+			    nvctrl 	
+			    iphlpapi
+				:
+				<link>static
+				<toolset>darwin:<linkflags>"-Wl,-syslibroot,/Developer/SDKs/MacOSX10.6.sdk -arch i386" 
+				#<toolset>darwin:<linkflags>"-mmacosx-version-min=10.4" 
+				#<toolset>darwin:<cflags>"-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.6.sdk" 
+				<toolset>darwin:<linkflags>"-framework IOKit -framework ApplicationServices -framework CoreFoundation"
+				;
+				
+exe ColorRamdac	: 	
+				src/colorRamdac/ColorRamDacMain.cpp
+				CORE_COLORRAMDAC_SOURCE		 		
+				gdi32
+				x86			
+				:
+				<link>static
+				<toolset>darwin:<linkflags>"-Wl,-syslibroot,/Developer/SDKs/MacOSX10.6.sdk -arch i386" 
+				#<toolset>darwin:<linkflags>"-mmacosx-version-min=10.4"  
+				#<toolset>darwin:<cflags>"-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.6.sdk" 
+				<toolset>darwin:<linkflags>"-framework IOKit -framework ApplicationServices -framework CoreFoundation"
+				;
+
+echo [ os.name ] ;
