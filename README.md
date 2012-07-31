@@ -9,8 +9,9 @@ The suite is composed of two tools :
 
 ![ColorKeeper and ColorHealer](https://lh5.googleusercontent.com/-CDoPae148_k/T_7sV-kVBCI/AAAAAAAAMoA/L2w2ZbGKpvc/s820/keeper_healer_screenshot.png "ColorTribe screenshot")
 
-[More screenshots](https://github.com/mikrosimage/OpenCalibrator/wiki/Screenshots)  
-[See feature overview](https://github.com/mikrosimage/OpenCalibrator/wiki/Features-overview)
+[More screenshots](https://github.com/mikrosimage/OpenCalibrator/wiki/Screenshots).  
+[See feature overview](https://github.com/mikrosimage/OpenCalibrator/wiki/Features-overview).
+[See trouble shootings](https://github.com/mikrosimage/OpenCalibrator/wiki/Trouble-shootings).
 ___
 License
 -------
