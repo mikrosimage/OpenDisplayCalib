@@ -10,7 +10,9 @@ Color correction algorithms were developped in collaboration with [ENS Louis Lum
 Special Thanks to :
 >- [Christophe Lorenz](https://github.com/ChristopheLorenz) 
 >- [Guillaume Chatelet](https://github.com/gchatelet)
->- [Laurent Clavier]
+>- [Laurent Clavier]  
+
+
 for their advices and help.
 
 Project hosted by GitHub : [https://github.com/mikrosimage/OpenCalibrator](https://github.com/mikrosimage/OpenCalibrator)
