@@ -1,0 +1,34 @@
+# BJam makefile for Klein-K10 Probe
+# mfe (apr 2010)
+
+import os ;
+import type ;
+
+
+local BOOST_INCLUDE 		= [ modules.peek : BOOST_INCLUDE ] ;
+local MINGW_LIB 			= [ modules.peek : MINGW_LIB ] ;  
+local JDK_HOME 			= [ modules.peek : JDK_HOME ] ;  
+
+alias CORE_SOURCES : 
+	[ glob		
+		src/*.cpp
+
+	] 	
+	;
+
+project K10
+	: requirements	
+					##<variant>debug:<define>DEBUG:<threading>multi		
+					##<variant>release:<define>RELEASE:<threading>multi	
+					<include>$(BOOST_INCLUDE)
+					
+	 				
+	: default-build release 
+	; 
+
+lib K10	:	
+				CORE_SOURCES 
+				: 
+				<link>shared
+				;
+

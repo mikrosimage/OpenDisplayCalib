@@ -1,0 +1,35 @@
+# BJam makefile for CS200 jni
+# mfe (jul 2009)
+
+import os ;
+import type ;
+
+
+local BOOST_INCLUDE 		= [ modules.peek : BOOST_INCLUDE ] ;
+local MINGW_LIB 			= [ modules.peek : MINGW_LIB ] ;  
+local JDK_HOME 			= [ modules.peek : JDK_HOME ] ;  
+
+alias CORE_SOURCES : 
+	[ glob		
+		src/*.cpp
+
+	] 	
+	;
+
+project CS200_jni
+	: requirements	
+					##<variant>debug:<define>DEBUG:<threading>multi		
+					##<variant>release:<define>RELEASE:<threading>multi	
+					<include>$(BOOST_INCLUDE)
+					<include>$(JDK_HOME)/include
+					<include>$(JDK_HOME)/include/win32
+					<include>"include/"
+	 				<linkflags>"-Llib -lCS200 -Wl,--kill-at -Wall -D_JNI_IMPLEMENTATION_ "
+	: default-build release 
+	; 
+
+lib JCS200	:	
+				CORE_SOURCES 
+				: 
+				<link>shared
+				;
