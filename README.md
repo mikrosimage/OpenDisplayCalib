@@ -21,7 +21,7 @@ ___
 Compilation
 -------
 - Getting the source  
->  git clone --recursive [git@github.com:mikrosimage/OpenCalibrator.git](git@github.com:mikrosimage/OpenCalibrator.git)
+>  git clone [git@github.com:mikrosimage/OpenCalibrator.git](git@github.com:mikrosimage/OpenCalibrator.git)
 - Compilation  
   * ColorLib_cpp / ColorKeeper  (**C++ / QT / Boost**)  
 (cf tested compilers below)  
@@ -35,10 +35,10 @@ To easily build ColorHealer, use [Maven](http://maven.apache.org/download.html) 
 
   * Probes support 
        * CS-200  
-[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenCalibrator/konica_minolta_cs200_precompiled_libs.zip) 
+[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenCalibrator/konica_minolta_cs200_precompiled_libs.zip) (161 ko)
 
        * K-10   
-[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenCalibrator/klein_k10_precompiled_libs.zip) (un-official SDK) 
+[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenCalibrator/klein_k10_precompiled_libs.zip) (un-official SDK) (117 ko)
 
        * Datacolor  
   To get a SDK and an API Authorzation code : contact C. David Tobie <CDTobie@datacolor.com>, Global Product Technology Manager at Datacolor.  
