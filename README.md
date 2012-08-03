@@ -36,9 +36,11 @@ To easily build ColorHealer, use [Maven](http://maven.apache.org/download.html) 
   * Probes support 
        * CS-200  
 [Download precompiled libs](https://github.com/downloads/mikrosimage/OpenCalibrator/konica_minolta_cs200_precompiled_libs.zip) (161 ko)
+(Windows only but can be ported)
 
        * K-10   
 [Download precompiled libs](https://github.com/downloads/mikrosimage/OpenCalibrator/klein_k10_precompiled_libs.zip) (un-official SDK) (117 ko)
+(Windows only but we should use official SDK (Win / Mac / Lin) soon. 
 
        * Datacolor  
   To get a SDK and an API Authorzation code : contact C. David Tobie <CDTobie@datacolor.com>, Global Product Technology Manager at Datacolor.  
