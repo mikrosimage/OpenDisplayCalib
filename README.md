@@ -1,4 +1,4 @@
-![logo](https://lh5.googleusercontent.com/-axRo2XZwJ_g/T_7uxO-ctWI/AAAAAAAAMok/ntYiPjgq7qA/s200/ColorTribeLogo_small.png "logos") OpenCalibrator (aka ColorTribe)
+![logo](https://lh5.googleusercontent.com/-axRo2XZwJ_g/T_7uxO-ctWI/AAAAAAAAMok/ntYiPjgq7qA/s200/ColorTribeLogo_small.png "logos") OpenDisplayCalibrator (aka ColorTribe)
 ========================
 
 ColorTribe is a color measurement and calibration software suite for display devices.
