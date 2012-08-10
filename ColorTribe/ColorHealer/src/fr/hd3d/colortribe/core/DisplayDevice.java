@@ -56,7 +56,7 @@ public class DisplayDevice
      
     }
 
-    public DisplayDevice(String screenInfo) throws IllegalArgumentException
+    DisplayDevice(String screenInfo) throws IllegalArgumentException
     {
         // SCREEN_INFO_ [index]1;[uid]ENC1816 | numeric UID unset | S/N
         // 53897067;[manufacturer]ENC;[model]S2000;[type]unset

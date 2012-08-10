@@ -7,18 +7,27 @@ import com.sun.jna.win32.StdCallLibrary;
 
 public class JK10
 {
-    static public class XYZ extends Structure
+    static private class XYZ extends Structure
     {
-        public static class ByValue extends XYZ implements Structure.ByValue
+        private static class ByValue extends XYZ implements Structure.ByValue
         {
         }
 
-        public float X;
-        public float Y;
-        public float Z;
+        private float X;
+        private float Y;
+        private float Z;
+		public float getX() {
+			return X;
+		}
+		public float getY() {
+			return Y;
+		}
+		public float getZ() {
+			return Z;
+		}
     }
 
-    public interface IK10 extends StdCallLibrary
+    private interface IK10 extends StdCallLibrary
     {
         public IK10 INSTANCE = (IK10) Native.loadLibrary("lib\\K10", IK10.class);
 
@@ -46,10 +55,10 @@ public class JK10
     {
         float values[] = new float[3];
         XYZ.ByValue res = IK10.INSTANCE.getXYZ();
-        System.out.println(res.X + " " + res.Y + " " + res.Z);
-        values[0] = res.X;
-        values[1] = res.Y;
-        values[2] = res.Z;
+        System.out.println(res.getX() + " " + res.getY() + " " + res.getZ());
+        values[0] = res.getX();
+        values[1] = res.getY();
+        values[2] = res.getZ();
         return values;
     }
     static public void release(){

@@ -82,7 +82,7 @@ public class JHealerMenu extends JPanel
 
     }
 
-    public void rePaintStep()
+    void rePaintStep()
     {
         _parent.rePaintStep();
     }

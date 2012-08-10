@@ -50,14 +50,14 @@ public class DisplayStep extends Step
     private EDisplayDeviceType _selectedType = null;
     private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
     private CustomTabbedPane _tabPane;
-    JTextField _brandTex;
-    JTextField _modelTex;
-    JTextField _uidTex;
-    JTextField _hostTex;
-    JTextField _venueTex;
-    JTextField _bulbTextField;
-    JTextField _calibFormatTextField;
-    static List<String> _dependantSteps = new ArrayList<String>();
+    private JTextField _brandTex;
+    private JTextField _modelTex;
+    private JTextField _uidTex;
+    private JTextField _hostTex;
+    private JTextField _venueTex;
+    private JTextField _bulbTextField;
+    private JTextField _calibFormatTextField;
+    private static List<String> _dependantSteps = new ArrayList<String>();
     static
     {
         _dependantSteps.add(ProbeTargetStep.NAME);

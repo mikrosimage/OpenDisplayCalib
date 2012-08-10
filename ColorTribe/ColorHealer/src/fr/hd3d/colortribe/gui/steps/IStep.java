@@ -1,6 +1,6 @@
 package fr.hd3d.colortribe.gui.steps;
 
-public interface IStep
+interface IStep
 {
     public void init();
     public boolean canUnLockDependantStep();

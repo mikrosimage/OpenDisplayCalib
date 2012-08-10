@@ -7,11 +7,10 @@ import fr.hd3d.colortribe.gui.steps.Step;
 import fr.hd3d.colortribe.gui.steps.Step.StepStatus;
 
 
-public interface ICalibProtocol
+interface ICalibProtocol
 {
     public LinkedHashMap<String, Step> getSteps();
     public StepStatus getStepStatus(String name);
-    public String getStepDescription(String name);
     public String getStepHTMLDescription(String name);
     public Step getSelectedStep();
     public void setSelectedStep(String name);

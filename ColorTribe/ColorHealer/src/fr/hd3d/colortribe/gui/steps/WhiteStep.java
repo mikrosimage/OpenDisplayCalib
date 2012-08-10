@@ -109,7 +109,7 @@ public class WhiteStep extends Step
 
     private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
 
-    static List<String> _dependantSteps = new ArrayList<String>();
+    private static List<String> _dependantSteps = new ArrayList<String>();
     static
     {
         _dependantSteps.add(MeasuresStep.NAME);
@@ -713,7 +713,7 @@ public class WhiteStep extends Step
         getContentPane().add(_tabPane, BorderLayout.CENTER);
     }
 
-    public void oneWhite()
+    private void oneWhite()
     {
         ColorHealerModel model = ColorHealerModel._instance;
         ITarget target = model.getTarget();
@@ -802,7 +802,7 @@ public class WhiteStep extends Step
         _whiteGaugeCanvas.repaint();
     }
 
-    public void white()
+    private void white()
     {
         final MeasuresSet measures = ColorHealerModel._instance.getCurrentMeasuresSet();
 
@@ -850,7 +850,7 @@ public class WhiteStep extends Step
         thread.start();
     }
 
-    public void gray()
+    private void gray()
     {
         final MeasuresSet measures = ColorHealerModel._instance.getCurrentMeasuresSet();
         Thread thread;
@@ -1021,7 +1021,7 @@ public class WhiteStep extends Step
         _status = _oldStatus;
     }
 
-    public void unValid()
+    private void unValid()
     {
         boolean mustRepain = true;
         if (_status == StepStatus.NOT_COMPLETE)

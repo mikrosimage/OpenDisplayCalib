@@ -1,6 +1,5 @@
 package fr.hd3d.colortribe.core.probes;
 
-import java.awt.HeadlessException;
 import java.util.ConcurrentModificationException;
 import java.util.logging.Logger;
 
@@ -82,7 +81,7 @@ public class SampleGrabber
         return _instance;
     }
 
-    public void checkProbe()
+    private void checkProbe()
     {
         EProbeType probeType = ColorHealerModel._instance.getProbe().getEProbeType();
         if (probeType != _probe.getEProbeType())
@@ -152,21 +151,6 @@ public class SampleGrabber
                         e.printStackTrace();
                     }
             }
-    }
-
-    private boolean isSampleManagerAvailable() throws Exception
-    {
-        return _probe.isAvailable("");
-    }
-
-    public boolean calibrateSampleManager() throws HeadlessException, Exception
-    {
-        if (isSampleManagerAvailable())
-        {
-                _probe.open("");
-            return true;
-        }
-        return false;
     }
 
     public String getProbeDescription()

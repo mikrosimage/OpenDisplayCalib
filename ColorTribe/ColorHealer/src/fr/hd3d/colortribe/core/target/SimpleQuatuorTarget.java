@@ -15,15 +15,6 @@ public class SimpleQuatuorTarget extends AbstractTarget
         _primaries = primaries;
     }
 
-    public boolean checkTarget(AbstractTarget target)
-    {
-        if (target instanceof SimpleQuatuorTarget)
-        {
-            return true;
-        }
-        else
-            return false;
-    }
 
     public ETargetType getType()
     {

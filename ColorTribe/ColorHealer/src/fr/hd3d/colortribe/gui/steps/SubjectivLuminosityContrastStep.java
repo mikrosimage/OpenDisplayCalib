@@ -19,7 +19,7 @@ import fr.hd3d.colortribe.gui.CustomTabbedPane;
 import fr.hd3d.colortribe.gui.components.JImageCanvas;
 
 
-public class SubjectivLuminosityContrastStep extends LuminosityContrastStep
+class SubjectivLuminosityContrastStep extends LuminosityContrastStep
 {
 
     /**
@@ -30,14 +30,14 @@ public class SubjectivLuminosityContrastStep extends LuminosityContrastStep
      * 
      */
 
-    protected JPanel _lumPan;
-    protected JPanel _contrastPan;
-    protected CustomTabbedPane _tabPane;
+    private JPanel _lumPan;
+    private JPanel _contrastPan;
+    private CustomTabbedPane _tabPane;
 
-    LuminosityContrastStep _parent;
+    private LuminosityContrastStep _parent;
     private StepStatus _oldStatus = StepStatus.OK;
 
-    public SubjectivLuminosityContrastStep(LuminosityContrastStep parent)
+    SubjectivLuminosityContrastStep(LuminosityContrastStep parent)
     {
         super();
         _parent = parent;

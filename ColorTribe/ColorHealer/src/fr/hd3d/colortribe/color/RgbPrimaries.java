@@ -18,9 +18,7 @@ public class RgbPrimaries implements IRgbPrimary {
         this.blue = blue;
     }
 
-    public RgbPrimaries(String name, IIlluminant red, IIlluminant green, IIlluminant blue) {
-        this(name, red, green, blue, "");
-    }
+    
 
     /* (non-Javadoc)
      * @see com.max.colour.IPrimary#getName()

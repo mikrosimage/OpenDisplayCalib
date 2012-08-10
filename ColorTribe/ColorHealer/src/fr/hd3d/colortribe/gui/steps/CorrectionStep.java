@@ -41,11 +41,11 @@ public class CorrectionStep extends Step
     private StepStatus _oldStatus = StepStatus.OK;
     private JButton _toggleCorrBut ;
     
-    boolean _toggleValue = true;
+    private boolean _toggleValue = true;
 
     private JList _list;
     private DefaultListModel _listModel;
-    static List<String> _dependantSteps = new ArrayList<String>();
+    private static List<String> _dependantSteps = new ArrayList<String>();
     static
     {}
 

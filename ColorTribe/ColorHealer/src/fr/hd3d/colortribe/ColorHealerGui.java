@@ -13,7 +13,7 @@ import fr.hd3d.colortribe.gui.HealerWaitingWindow;
 
 public class ColorHealerGui
 {
-    public static HealerWaitingWindow waitingFrame;
+    private static HealerWaitingWindow waitingFrame;
     public static HealerMainWindow mainWindow;
 
     /**

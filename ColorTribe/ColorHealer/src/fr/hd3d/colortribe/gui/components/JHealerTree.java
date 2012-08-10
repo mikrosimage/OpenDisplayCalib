@@ -34,7 +34,7 @@ import fr.hd3d.colortribe.gui.steps.Step;
 import fr.hd3d.colortribe.gui.steps.Step.StepStatus;
 
 
-public class JHealerTree extends JPanel implements ProtocolListener
+class JHealerTree extends JPanel implements ProtocolListener
 {
 
     /**
@@ -46,11 +46,11 @@ public class JHealerTree extends JPanel implements ProtocolListener
     private int _xOffset;
     private int _offset;
     private int _gap = 3;
-    JTree _tree;
-    JScrollPane _pane;
-    JHealerMenu _parent;
-    MultiLinesRenderer _cellRenderer;
-    Map<String, Integer> _stepToRow;
+    private JTree _tree;
+    private JScrollPane _pane;
+    private JHealerMenu _parent;
+    private MultiLinesRenderer _cellRenderer;
+    private Map<String, Integer> _stepToRow;
 
     private static final long serialVersionUID = -561368673415100610L;
 
@@ -59,7 +59,7 @@ public class JHealerTree extends JPanel implements ProtocolListener
     static private Icon disableIcon = new ImageIcon("img/node_disable.png");
     static private Icon enableIcon = new ImageIcon("img/node_enable.png");
 
-    public JHealerTree(JHealerMenu parent)
+    JHealerTree(JHealerMenu parent)
     {
         _parent = parent;
         LinkedHashMap<String, Step> steps = ColorHealerModel._instance.getProtocol().getSteps();

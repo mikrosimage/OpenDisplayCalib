@@ -84,7 +84,7 @@ public class ContinuousMeasuresStep extends Step
 
     private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
 
-    static List<String> _dependantSteps = new ArrayList<String>();
+    private static List<String> _dependantSteps = new ArrayList<String>();
     static
     {
         _dependantSteps.add(SimpleMeasuresStep.NAME);
@@ -480,7 +480,7 @@ public class ContinuousMeasuresStep extends Step
         getContentPane().add(_tabPane, BorderLayout.CENTER);
     }
 
-    public void launchMeasure()
+    private void launchMeasure()
     {
         final ColorHealerModel model = ColorHealerModel._instance;
         final MeasuresSet measures = model.getCurrentMeasuresSet();
@@ -609,7 +609,7 @@ public class ContinuousMeasuresStep extends Step
         thread.start();
     }
 
-    public void measure()
+    private void measure()
     {
 
         _measureBut.setText("stop measures");

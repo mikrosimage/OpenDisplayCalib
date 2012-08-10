@@ -44,14 +44,7 @@ public class MeasuresProtocol extends AbstractProtocol
             return StepStatus.UNKNOWN;
     }
 
-    public String getStepDescription(String name)
-    {
-        Step step = _steps.get(name);
-        if (step != null)
-            return step.getDescription();
-        else
-            return "UNKNOWN";
-    }
+    
 
     public String getStepHTMLDescription(String name)
     {

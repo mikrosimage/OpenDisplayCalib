@@ -25,24 +25,18 @@ public class CorrectionCanvas extends GlLikeCanvas
     private float _userScale = 1;
     private float _userTranslateX = 0;
     private float _userTranslateY = 0;
-    int _lastX;
-    int _lastY;
+    private int _lastX;
+    private int _lastY;
 
-    public void resetUserTransform()
-    {
-        _userScale = 1;
-        _userTranslateX = 0;
-        _userTranslateY = 0;
-        repaint();
-    }
+    
 
-    public void incScale(float howMuch)
+    private void incScale(float howMuch)
     {
         _userScale += howMuch;
         repaint();
     }
 
-    public void decScale(float howMuch)
+    private void decScale(float howMuch)
     {
         _userScale -= howMuch;
         if (_userScale < 1)

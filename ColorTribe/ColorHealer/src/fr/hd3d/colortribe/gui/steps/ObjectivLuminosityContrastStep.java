@@ -27,7 +27,7 @@ import fr.hd3d.colortribe.gui.JHealerColors;
 import fr.hd3d.colortribe.gui.components.JImageCanvas;
 
 
-public class ObjectivLuminosityContrastStep extends LuminosityContrastStep
+class ObjectivLuminosityContrastStep extends LuminosityContrastStep
 {
 
     /**
@@ -38,21 +38,21 @@ public class ObjectivLuminosityContrastStep extends LuminosityContrastStep
      * 
      */
 
-    protected JPanel _lumconPan;
-    protected JPanel _subjectivePan;
-    protected CustomTabbedPane _tabPane;
+    private JPanel _lumconPan;
+    private JPanel _subjectivePan;
+    private CustomTabbedPane _tabPane;
 
-    LuminosityContrastStep _parent;
+    private LuminosityContrastStep _parent;
     private StepStatus _oldStatus = StepStatus.OK;
 
-    public ObjectivLuminosityContrastStep(LuminosityContrastStep parent)
+    ObjectivLuminosityContrastStep(LuminosityContrastStep parent)
     {
         super();
         _parent = parent;
         buildUI();
     }
 
-    public void buildSubjectivePan(JPanel subjectivePanel)
+    private void buildSubjectivePan(JPanel subjectivePanel)
     {
         JPanel lumPan;
         JPanel contrastPan;
@@ -175,7 +175,7 @@ public class ObjectivLuminosityContrastStep extends LuminosityContrastStep
 
     }
 
-    public void buildObjectivePan(JPanel objectivePanel)
+    private void buildObjectivePan(JPanel objectivePanel)
     {
         objectivePanel.setLayout(new GridBagLayout());
         // / luminosity panel
@@ -184,7 +184,7 @@ public class ObjectivLuminosityContrastStep extends LuminosityContrastStep
                 "Luminosity");
         tiledBorder.setTitleColor(JHealerColors.TEXT_COLOR);
         luminosity.setBorder(tiledBorder);
-        final JLabel blackLabel = new JLabel("Black : .... cda/m²");
+        final JLabel blackLabel = new JLabel("Black : .... cda/mï¿½");
         Dimension labelDim = new Dimension(150, 20);
         blackLabel.setMinimumSize(labelDim);
         blackLabel.setPreferredSize(labelDim);
@@ -199,7 +199,7 @@ public class ObjectivLuminosityContrastStep extends LuminosityContrastStep
                 MeasuresSet basicSet =   ColorHealerModel._instance.getBasicMeasuresSet();
                 basicSet.mesureThisColor(basicSet,Color.black,"black measure", false);
                 float blackLum = ((int)(basicSet.getMeasure(Color.black).getValue()._c*1000))/1000f;
-                blackLabel.setText("Black : "+blackLum + " cda/m²");
+                blackLabel.setText("Black : "+blackLum + " cda/mï¿½");
                 try
                 {
                     ColorHealerModel._instance.getSocketServer().sendMessage(
@@ -231,7 +231,7 @@ public class ObjectivLuminosityContrastStep extends LuminosityContrastStep
                 "Contrast");
         tiledBorder2.setTitleColor(JHealerColors.TEXT_COLOR);
         contrast.setBorder(tiledBorder2);
-        final JLabel whiteLabel = new JLabel("White : .... cda/m²");
+        final JLabel whiteLabel = new JLabel("White : .... cda/mï¿½");
         whiteLabel.setMinimumSize(labelDim);
         whiteLabel.setPreferredSize(labelDim);
 
@@ -251,7 +251,7 @@ public class ObjectivLuminosityContrastStep extends LuminosityContrastStep
                 MeasuresSet basicSet =   ColorHealerModel._instance.getBasicMeasuresSet();
                 basicSet.mesureThisColor(basicSet,Color.white, "white measure", false);
                 float whiteLum = ((int)(basicSet.getMeasure(Color.white).getValue()._c*1000))/1000f;                
-                whiteLabel.setText("White : "+whiteLum + " cda/m²");
+                whiteLabel.setText("White : "+whiteLum + " cda/mï¿½");
                 if(basicSet.getMeasure(Color.black )!=null){
                     float blackLum =((int)(basicSet.getMeasure(Color.black).getValue()._c*1000))/1000f;
                     int contrastValue = (int)(whiteLum / blackLum);

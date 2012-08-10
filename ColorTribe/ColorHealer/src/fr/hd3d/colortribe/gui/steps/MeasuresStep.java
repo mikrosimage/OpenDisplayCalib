@@ -49,8 +49,8 @@ public class MeasuresStep extends Step implements ProtocolListener
     private boolean _canUnlock = false;
     private boolean _alreadyLocked = false;
     private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
-    static List<String> _dependantSteps = new ArrayList<String>();
-    boolean firstTime = true;
+    private static List<String> _dependantSteps = new ArrayList<String>();
+    private boolean firstTime = true;
     private JList _list;
     private DefaultListModel _listModel;
     static

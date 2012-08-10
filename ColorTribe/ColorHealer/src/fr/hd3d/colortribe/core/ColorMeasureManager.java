@@ -11,15 +11,15 @@ import fr.hd3d.colortribe.core.probes.ISampleListener;
 import fr.hd3d.colortribe.core.probes.SampleGrabber;
 
 
-public class ColorMeasureManager implements ISampleListener
+class ColorMeasureManager implements ISampleListener
 {
-    public static final ColorMeasureManager _instance = new ColorMeasureManager();
+    static final ColorMeasureManager _instance = new ColorMeasureManager();
     private IPredicate _predicate;
     private ColorMeasure _currentMeasure;
     private MeasuresSet _currentMeasuresSet;
     private final Object lock = new Object();
 
-    synchronized public void mesurePatch(MeasuresSet currentMeasuresSet, Color patchColor, String label, boolean isPatch) throws IllegalAccessException, IOException
+    synchronized void mesurePatch(MeasuresSet currentMeasuresSet, Color patchColor, String label, boolean isPatch) throws IllegalAccessException, IOException
     {
         this._currentMeasuresSet = currentMeasuresSet;
         if (isPatch)

@@ -12,9 +12,9 @@ public class LuminosityContrastStep extends Step
     public static String NAME = "Luminosity and Contrast";
     private static final long serialVersionUID = 7306873765422762571L;
 
-    LuminosityContrastStep _selectedStep = null;
-    SubjectivLuminosityContrastStep _subj = null;
-    ObjectivLuminosityContrastStep _obj = null;
+    private LuminosityContrastStep _selectedStep = null;
+    private SubjectivLuminosityContrastStep _subj = null;
+    private ObjectivLuminosityContrastStep _obj = null;
 
     public LuminosityContrastStep()
     {

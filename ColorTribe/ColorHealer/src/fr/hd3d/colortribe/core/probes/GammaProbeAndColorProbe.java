@@ -10,7 +10,7 @@ public class GammaProbeAndColorProbe extends AbstractProbe
     // private EDisplayDeviceType _deviceType;
     private boolean isOpen = false;
 
-    AbstractProbe selectedProbe = null;
+    private AbstractProbe selectedProbe = null;
     private final EProbeType probeType;
 
     public void selectGammaProbe()
@@ -62,11 +62,7 @@ public class GammaProbeAndColorProbe extends AbstractProbe
         return isOpen;
     }
 
-    public static boolean isConnected()
-    {
-        // DO nothing
-        return true;
-    }
+    
 
     public boolean open(String comPort) throws Exception
     {

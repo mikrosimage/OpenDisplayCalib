@@ -68,14 +68,14 @@ public class SimpleMeasuresStep extends Step
     private JTextField gTxt;
     private JTextField bTxt;
     private JTextField labelTxt;
-    JTextArea _resume;
+    private JTextArea _resume;
     private JFileChooser fileChooser;
 
     private CustomTabbedPane _tabPane;
 
     private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
 
-    static List<String> _dependantSteps = new ArrayList<String>();
+    private static List<String> _dependantSteps = new ArrayList<String>();
     static
     {
         _dependantSteps.add(ContinuousMeasuresStep.NAME);
@@ -393,7 +393,7 @@ public class SimpleMeasuresStep extends Step
         getContentPane().add(_tabPane, BorderLayout.CENTER);
     }
 
-    public void launchMeasure()
+    private void launchMeasure()
     {
         ColorHealerModel model = ColorHealerModel._instance;
         final MeasuresSet measures = model.getCurrentMeasuresSet();
@@ -421,7 +421,7 @@ public class SimpleMeasuresStep extends Step
         unLockDependantStep();
     }
 
-    public void measure()
+    private void measure()
     {
 
         Thread thread;

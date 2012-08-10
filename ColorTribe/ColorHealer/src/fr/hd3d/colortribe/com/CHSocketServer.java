@@ -21,7 +21,7 @@ import fr.hd3d.colortribe.core.correction.AbstractCorrection;
 
 public class CHSocketServer extends ServerSocket implements ISocketServer
 {
-    static public int DEFAULT_PORT = 7935;
+    final static private int DEFAULT_PORT = 7935;
 
     static private CHSocketServer _instance = null;
     private Socket _socket = null;

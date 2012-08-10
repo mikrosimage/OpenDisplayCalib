@@ -21,7 +21,7 @@ abstract public class Step extends JPanel implements IStep
     protected int _width = 542;
     protected int _height = 555;
     protected boolean _isInit = false;
-    protected List<String> _dependantSteps = null;
+    private List<String> _dependantSteps = null;
     
 
     public enum StepStatus
@@ -31,7 +31,7 @@ abstract public class Step extends JPanel implements IStep
 
     protected StepStatus _status;
 
-    public Step( String name, String description, StepStatus status, List<String> dependantSteps)
+    Step( String name, String description, StepStatus status, List<String> dependantSteps)
     {
         _name = name;
         _description = description;

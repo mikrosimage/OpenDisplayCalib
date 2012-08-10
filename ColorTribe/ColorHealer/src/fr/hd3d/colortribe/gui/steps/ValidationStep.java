@@ -44,8 +44,8 @@ public class ValidationStep extends Step
     private CustomTabbedPane _tabPane;
     private boolean _canUnlock = false;
     private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
-    static List<String> _dependantSteps = new ArrayList<String>();
-    boolean firstTime = true;
+    private static List<String> _dependantSteps = new ArrayList<String>();
+    
     private JLabel targetLab;
     private JLabel calculatedGammaLab;
     private JLabel deltacalculatedGammaLab;
@@ -175,7 +175,7 @@ public class ValidationStep extends Step
         return _canUnlock;
     }
 
-    void updateList()
+    private void updateList()
     {
         ColorHealerModel model = ColorHealerModel._instance;
         _listModel.clear();
@@ -195,7 +195,7 @@ public class ValidationStep extends Step
         _list.updateUI();
     }
 
-    void updateLabels()
+    private void updateLabels()
     {
         ColorHealerModel model = ColorHealerModel._instance;
         AbstractCorrection correction = model.getCorrection();

@@ -30,9 +30,9 @@ import fr.hd3d.colortribe.gui.components.JImageCanvas;
 public class HealerWaitingWindow extends JFrame
 {
 
-    JLabel _statutLab;
-    JButton _funcBut;
-    boolean _isConnected;
+    private JLabel _statutLab;
+    private JButton _funcBut;
+    private boolean _isConnected;
     /**
 	 * 
 	 */
@@ -153,7 +153,7 @@ public class HealerWaitingWindow extends JFrame
         initComThread();
     }
 
-    public void initComThread()
+    private void initComThread()
     {
         Runnable runnable = new Runnable() {
             public void run()
@@ -188,7 +188,7 @@ public class HealerWaitingWindow extends JFrame
 
     }
 
-    public void close()
+    private void close()
     {
         setVisible(false);
 

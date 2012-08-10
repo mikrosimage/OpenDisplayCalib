@@ -44,7 +44,7 @@ public class K10Probe extends AbstractProbe
         return isOpen();
     }
 
-    public static boolean isConnected()
+    static boolean isConnected()
     {
         String res = JK10.isConnected();
         System.out.println("JK10 " + res);

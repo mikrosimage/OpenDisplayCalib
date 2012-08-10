@@ -42,14 +42,14 @@ public class FinalisationStep extends Step
 
     private CustomTabbedPane _tabPane;
     private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
-    JTextArea _resume;
-    String _infos;
-    JTextArea _com;
+    private JTextArea _resume;
+    private String _infos;
+    private JTextArea _com;
 
-    boolean _toggleValue = true;
+    
     private JFileChooser fileChooser;
 
-    static List<String> _dependantSteps = new ArrayList<String>();
+    private static List<String> _dependantSteps = new ArrayList<String>();
     static
     {}
 

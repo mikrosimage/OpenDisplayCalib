@@ -71,9 +71,9 @@ public class BatchMeasuresStep extends Step
     private JCIE76PrimariesCanvas _white76Canvas;
     private boolean _isInit = false;
     private JComboBox _primariesCombo;
-    JTextArea _resume;
+    private JTextArea _resume;
     private JFileChooser _fileChooser;
-    ArrayList<Color> _colorPatches = new ArrayList<Color>();;
+    private ArrayList<Color> _colorPatches = new ArrayList<Color>();;
     private JButton _launchBatchButton;
     private CustomTabbedPane _tabPane;
     private JLabel _displayPatchLabel;
@@ -84,7 +84,7 @@ public class BatchMeasuresStep extends Step
 
     private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
 
-    static List<String> _dependantSteps = new ArrayList<String>();
+    private static List<String> _dependantSteps = new ArrayList<String>();
     static
     {
         _dependantSteps.add(ProbeTargetStep.NAME);
@@ -694,11 +694,11 @@ public class BatchMeasuresStep extends Step
         getContentPane().add(_tabPane, BorderLayout.CENTER);
     }
 
-    public class BatchAction
+    private class BatchAction
     {
-        Timer t;
+        private Timer t;
 
-        public BatchAction(int actionDuration)
+        private BatchAction(int actionDuration)
         {
             t = new Timer();
             _launchBatchButton.setText("in progress");
@@ -707,9 +707,9 @@ public class BatchMeasuresStep extends Step
             t.schedule(new OneMeasureAction(), 0, actionDuration);
         }
 
-        class OneMeasureAction extends TimerTask
+        private class OneMeasureAction extends TimerTask
         {
-            int nbPatchMeasured = 0;
+            private int nbPatchMeasured = 0;
 
             public void run()
             {
@@ -748,7 +748,7 @@ public class BatchMeasuresStep extends Step
         }
     }
 
-    public void manualBatchedMeasures()
+    private void manualBatchedMeasures()
     {
 
         Thread thread;
@@ -805,7 +805,7 @@ public class BatchMeasuresStep extends Step
 
     }
 
-    public void automaticBatchedMeasures(final int patchDuration, final int waitingTime)
+    private void automaticBatchedMeasures(final int patchDuration, final int waitingTime)
     {
 
         Thread thread;

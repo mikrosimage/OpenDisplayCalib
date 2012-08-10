@@ -45,7 +45,7 @@ public class MeasuresSet
         return true;
     }
 
-    public void addMeasure(ColorMeasure measure)
+    void addMeasure(ColorMeasure measure)
     {
         _measures.put(measure.getPatchColor(), measure);
         System.out.println("Measure : " + measure + "(" + _measures.size() + ")");

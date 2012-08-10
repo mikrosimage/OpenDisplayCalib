@@ -17,11 +17,7 @@ import fr.hd3d.colortribe.core.target.ITarget;
 
 public class WhiteSoftwareCorrection
 {
-    private int _nbBitsEntries = 8;
     private int _nbBitsValues = 16;
-    // nombre de valeur de la LUT (ex : 256)
-    private int nbEntry = (int) Math.pow(2, _nbBitsEntries);
-    // valeur max des pixels values (ex : 65535)
     private int maxValue = (int) Math.pow(2, _nbBitsValues) - 1;
 
     private int _redMaxValue;
@@ -32,43 +28,43 @@ public class WhiteSoftwareCorrection
     {
 
         ITarget target = ColorHealerModel._instance.getTarget();
-        // blanc de reférence
+        // reference white
         Point2f targetColorTemp = target.getColorTemp().getxyCoordinates();
         IRgbPrimary targetPrimaries =  target.getPrimaries();
         // /
         Point2f targetWhite = new Point2f(targetColorTemp._a, targetColorTemp._b);
-        // blanc mesuré
+        // measure white
         Point2f screenWhite = new Point2f(mesWhite._a, mesWhite._b);
 
-        // conversion du blanc mesuré en XYZ
+        // measured white conversion to XYZ
         Point3f screen_xyY = new Point3f(screenWhite._a, screenWhite._b, maxValue * mesWhite._c / target.getMaxLum()); // pourrait
-                                                                                                                                // être
+                                                                                                                                // ï¿½tre
                                                                                                                                 // juste
                                                                                                                                 // 65535
         Point3f screen_XYZ = Formulas.convertCIExyYtoCIEXYZ(screen_xyY);
 
-        // conversion du blanc de ref en XYZ
+        // ref white conversion to XYZ
         Point3f target_xyY = new Point3f(targetWhite._a, targetWhite._b, maxValue);
         Point3f target_XYZ = Formulas.convertCIExyYtoCIEXYZ(target_xyY);
 
-        // primaires mesurées
+        // measured primaries
         Point2f red = new Point2f(mesRed._a, mesRed._b);
         Point2f green = new Point2f(mesGreen._a, mesGreen._b);
         Point2f blue = new Point2f(mesBlue._a, mesBlue._b);
         Primaries screenPrim = new Primaries("primM", red, green, blue);
 
-        // primaires de reference
+        // ref primaries
 
         Point2f targetRed = targetPrimaries.getRed().getxyCoordinates();
         Point2f targetGreen = targetPrimaries.getGreen().getxyCoordinates();
         Point2f targetBlue = targetPrimaries.getBlue().getxyCoordinates();
         Primaries recPrim = new Primaries("primM", targetRed, targetGreen, targetBlue);
 
-        // matrice de conversion de l'écran
+        // screen conversion matrix
         ColorMatrix screenMatrix = new ColorMatrix();
         screenMatrix.setup_CIEXYZtoRGB(screenPrim, screenWhite);
 
-        // matrice de conversion de reférence
+        // ref conversion matrix
         ColorMatrix recMatrix = new ColorMatrix();
         recMatrix.setup_CIEXYZtoRGB(recPrim, screenWhite);
 
@@ -149,16 +145,7 @@ public class WhiteSoftwareCorrection
         }
     }
 
-    public void displayLUT()
-    {
-        for (int i = 0; i < nbEntry; i++)
-        {
-            int rValue = i * _redMaxValue / (nbEntry - 1);
-            int gValue = i * _greenMaxValue / (nbEntry - 1);
-            int bValue = i * _blueMaxValue / (nbEntry - 1);
-            System.out.println(i + "\t" + rValue + "\t" + gValue + "\t" + bValue);
-        }
-    }
+    
 
     public boolean sendPreviewLUT()
     {

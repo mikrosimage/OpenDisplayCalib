@@ -92,7 +92,7 @@ public class ProbesPool
         return false;
     }
 
-    public void refreshProbesList()
+    private void refreshProbesList()
     {
         _probes.clear();
         sniffProbes();

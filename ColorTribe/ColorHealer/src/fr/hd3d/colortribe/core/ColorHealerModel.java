@@ -393,7 +393,7 @@ public class ColorHealerModel
         return _probe;
     }
 
-    public class MultiplexedCorrection extends AbstractCorrection
+    private class MultiplexedCorrection extends AbstractCorrection
     {
 
         public MultiplexedCorrection()

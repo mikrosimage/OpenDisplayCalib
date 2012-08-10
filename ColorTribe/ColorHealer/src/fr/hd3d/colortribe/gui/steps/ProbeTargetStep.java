@@ -82,7 +82,7 @@ public class ProbeTargetStep extends Step
     private JTextField _frequencyTextField;
     private JTextField _durationTextField;
 
-    static List<String> _dependantSteps = new ArrayList<String>();
+    private static List<String> _dependantSteps = new ArrayList<String>();
     static
     {
         _dependantSteps.add(LuminosityContrastStep.NAME);
@@ -103,7 +103,7 @@ public class ProbeTargetStep extends Step
         return _status == StepStatus.OK;
     }
 
-    public void sniffProbes()
+    private void sniffProbes()
     {
         Runnable runnable = new Runnable() {
             public void run()

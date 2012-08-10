@@ -15,7 +15,7 @@ import fr.hd3d.colortribe.core.predicate.IIndexable;
  * @author mfe
  * 
  */
-public class ColorMeasure implements Comparable<ColorMeasure>, IIndexable {
+public class ColorMeasure implements IIndexable {
     private Color _patchColor;
     private ColorSet _samples;
     private String _label;
@@ -91,16 +91,6 @@ public class ColorMeasure implements Comparable<ColorMeasure>, IIndexable {
         return "["+_patchColor.getRed() + " " + _patchColor.getGreen() + " " + _patchColor.getBlue() + "]\t" + value._a + "\t" + value._b + "\t" + value._c ;
     }
 
-    public int compareTo(ColorMeasure o) {
-        //TODO rewrite this func
-        if (getValue()._c == o.getValue()._c)
-            return 0;
-        else if (getValue()._c > o.getValue()._c)
-            return 1;
-        else
-            return -1;
-    }
-    
    
  
 }

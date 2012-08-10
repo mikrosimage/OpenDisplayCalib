@@ -1,7 +1,6 @@
 package fr.hd3d.colortribe.core.correction;
 
 import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,7 +18,6 @@ abstract public class AbstractCorrection
     protected List<Point2f> _redCorrection = null;
     protected List<Point2f> _greenCorrection = null;
     protected List<Point2f> _blueCorrection = null;
-    public List<Point2f> _tmpPoints;
 
     public AbstractCorrection()
     {
@@ -57,28 +55,7 @@ abstract public class AbstractCorrection
         return false;
     }
 
-    public void saveLut(String file)
-    {
-        BufferedWriter sortie;
-        try
-        {
-            sortie = new BufferedWriter(new FileWriter(file));
-            sortie.write("");
-            int size = _redCorrection.size();
-            for (int i = 0; i < size; i++)
-            {
-                int[] color = ColorMath.floatColorToUShortColor(_redCorrection.get(i)._b, _greenCorrection.get(i)._b,
-                        _blueCorrection.get(i)._b);
-                String s = i + "\t" + color[0] + "\t" + color[1] + "\t" + color[2] + "\n";
-                sortie.append(s);
-            }
-            sortie.close();
-        }
-        catch (IOException e1)
-        {
-            e1.printStackTrace();
-        }
-    }
+    
 
     public void saveLut(BufferedWriter sortie)
     {

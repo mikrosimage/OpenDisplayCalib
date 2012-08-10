@@ -28,10 +28,10 @@ public class HealerMainWindow extends JFrame
      * 
      */
     private static final long serialVersionUID = 8666214186131138078L;
-    JPanel _step;
-    JHealerMenu _menu;
-    JButton _closeButt;
-    JPanel _mainContainer = new JPanel(new BorderLayout());
+    private JPanel _step;
+    private JHealerMenu _menu;
+    private JButton _closeButt;
+    private JPanel _mainContainer = new JPanel(new BorderLayout());
     static public HealerMainWindow _instance = new HealerMainWindow();
 
     private HealerMainWindow()
@@ -174,7 +174,7 @@ public class HealerMainWindow extends JFrame
 
     private boolean isInit = false;
 
-    public void init()
+    private void init()
     {
         if (!isInit)
         {
@@ -187,18 +187,14 @@ public class HealerMainWindow extends JFrame
 
     }
 
-    public void open()
+    void open()
     {
         init();
         setVisible(true);
 
     }
 
-    public void close()
-    {
-        setVisible(false);
-
-    }
+    
 
     public void rePaintStep()
     {

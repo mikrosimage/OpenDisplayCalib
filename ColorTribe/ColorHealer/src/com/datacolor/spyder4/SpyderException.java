@@ -24,25 +24,25 @@ public class SpyderException extends Exception
      * 
      */
     private static final long serialVersionUID = 3571593382335989248L;
-    static final int DC_STATUS_SUCCESS = 0x01;
-    static final int DC_STATUS_FAILURE = 0x00;
-    static final int DC_ERROR_API = 0x00;
-    static final int DC_ERROR_SYSTEM = 0x01;
+    private static final int DC_STATUS_SUCCESS = 0x01;
+    private static final int DC_STATUS_FAILURE = 0x00;
+    private static final int DC_ERROR_API = 0x00;
+    private static final int DC_ERROR_SYSTEM = 0x01;
 
-    static final int DC_ERROR_NOT_INITIALIZED = 0x00010001;
-    static final int DC_ERROR_INVALID_PARAMETER = 0x00010002;
-    static final int DC_ERROR_TRANSMISSION_ERROR = 0x00010004;
-    static final int DC_ERROR_TIMEOUT = 0x00010006;
-    static final int DC_ERROR_BAD_AUTHORIZATION = 0x00010007;
-    static final int DC_ERROR_NOT_AUTHORIZED = 0x00010008;
-    static final int DC_ERROR_NOT_VENDOR_DEVICE = 0x00010009;
-    static final int DC_LAST_FATAL_ERROR = 0x0001FFFF;
+    private static final int DC_ERROR_NOT_INITIALIZED = 0x00010001;
+    private static final int DC_ERROR_INVALID_PARAMETER = 0x00010002;
+    private static final int DC_ERROR_TRANSMISSION_ERROR = 0x00010004;
+    private static final int DC_ERROR_TIMEOUT = 0x00010006;
+    private static final int DC_ERROR_BAD_AUTHORIZATION = 0x00010007;
+    private static final int DC_ERROR_NOT_AUTHORIZED = 0x00010008;
+    private static final int DC_ERROR_NOT_VENDOR_DEVICE = 0x00010009;
+    private static final int DC_LAST_FATAL_ERROR = 0x0001FFFF;
 
-    static final int DC_WARNING_ALREADY_INITIALIZED = 0x00020001;
-    static final int DC_WARNING_OVERALL_TIMEOUT = 0x00020003;
-    static final int DC_WARNING_NO_CRT_CALIBRATION = 0x00020005;
-    static final int DC_WARNING_NO_LCD_CALIBRATION = 0x00020006;
-    static final int DC_WARNING_NO_TOK_CALIBRATION = 0x00020007;
+    private static final int DC_WARNING_ALREADY_INITIALIZED = 0x00020001;
+    private static final int DC_WARNING_OVERALL_TIMEOUT = 0x00020003;
+    private static final int DC_WARNING_NO_CRT_CALIBRATION = 0x00020005;
+    private static final int DC_WARNING_NO_LCD_CALIBRATION = 0x00020006;
+    private static final int DC_WARNING_NO_TOK_CALIBRATION = 0x00020007;
     private int _code;
     private int _detailledCode = -1;
 

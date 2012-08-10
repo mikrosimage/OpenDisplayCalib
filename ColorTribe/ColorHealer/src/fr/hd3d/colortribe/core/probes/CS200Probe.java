@@ -66,7 +66,7 @@ public class CS200Probe extends AbstractProbe
         return _cs200.isConnected();
     }
 
-    public static boolean isConnected()
+    static boolean isConnected()
     {
 
         try

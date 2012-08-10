@@ -11,7 +11,7 @@ import fr.hd3d.colortribe.core.DisplayDevice;
 import fr.hd3d.colortribe.core.DisplayDevice.EDisplayDeviceType;
 
 
-public class Spyder3Probe extends AbstractProbe
+class Spyder3Probe extends AbstractProbe
 {
     private Spyder3 _spydy;
     // private EDisplayDeviceType _deviceType;

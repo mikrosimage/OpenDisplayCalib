@@ -13,7 +13,7 @@ public class JImageCanvas extends JPanel
      * 
      */
     private static final long serialVersionUID = 5983550779091115411L;
-    Image _image;
+    private Image _image;
 
     public JImageCanvas(String url, int width, int height)
     {

@@ -13,8 +13,8 @@ import fr.hd3d.colortribe.core.MeasuresSet;
 public class ENSLLColorCorrection extends AbstractCorrection
 {
 
-    int _measureSetIndex;
-    boolean _alreadyCompute = false;
+    private int _measureSetIndex;
+    private boolean _alreadyCompute = false;
     private Point3f _foundGamma;
     private Point3f _corrGamma;
     private Point3f _calibratedGamma = null;
@@ -83,7 +83,7 @@ public class ENSLLColorCorrection extends AbstractCorrection
         return sad;
     }
 
-    public float getMinGamma(List<ColorMeasure> measures, float gamma, float firstValue, float rangeValue, int canal)
+    private float getMinGamma(List<ColorMeasure> measures, float gamma, float firstValue, float rangeValue, int canal)
     {
         float start = 2f;
         float step = 0.005f;

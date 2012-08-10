@@ -6,7 +6,7 @@ import fr.hd3d.colortribe.color.IIlluminant;
 import fr.hd3d.colortribe.color.IRgbPrimary;
 
 
-abstract public class AbstractTarget implements ITarget
+abstract class AbstractTarget implements ITarget
 {
     protected float _gamma = 2.2f;
     protected float _maxLum = 80f;

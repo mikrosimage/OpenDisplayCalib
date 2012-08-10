@@ -11,18 +11,18 @@ import java.awt.Color;
 
 import fr.hd3d.colortribe.color.Formulas;
 import fr.hd3d.colortribe.color.type.Point3f;
-import fr.hd3d.colortribe.color.util.BinarySearchCurve;
+import fr.hd3d.colortribe.color.util.InterpolatedCurve;
 import fr.hd3d.colortribe.core.ColorHealerModel;
 
 
-public class FakeNoisyProbe extends AbstractProbe
+class FakeNoisyProbe extends AbstractProbe
 {
 
     private boolean open;
-    private final BinarySearchCurve noiseCurve = new BinarySearchCurve();
-    private final BinarySearchCurve curveRed = new BinarySearchCurve();
-    private final BinarySearchCurve curveGreen = new BinarySearchCurve();
-    private final BinarySearchCurve curveBlue = new BinarySearchCurve();
+    private final InterpolatedCurve noiseCurve = new InterpolatedCurve();
+    private final InterpolatedCurve curveRed = new InterpolatedCurve();
+    private final InterpolatedCurve curveGreen = new InterpolatedCurve();
+    private final InterpolatedCurve curveBlue = new InterpolatedCurve();
     private final float white = 80;
     private final float black = 0.2f;
 
@@ -68,7 +68,7 @@ public class FakeNoisyProbe extends AbstractProbe
         final Point3f XYZ = Formulas.convertRGB_D65toXYZ(RGB);
         return Formulas.convertCIEXYZtoCIExyY(XYZ);
     }
-    static boolean pouet = false;
+    private static boolean pouet = false;
     private float compensateValue(float val)
     {
         float addOn;
@@ -86,10 +86,7 @@ public class FakeNoisyProbe extends AbstractProbe
         return noised;
     }
 
-    public boolean setPrecision(float precision)
-    {
-        return false;
-    }
+    
 
     public EProbeType getEProbeType()
     {
@@ -101,7 +98,7 @@ public class FakeNoisyProbe extends AbstractProbe
         return "Test probe with defined curves and noise parameters";
     }
 
-    public static boolean isConnected()
+    static boolean isConnected()
     {
         return true;
     }

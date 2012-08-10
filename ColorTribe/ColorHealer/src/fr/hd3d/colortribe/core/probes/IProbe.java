@@ -7,7 +7,7 @@ public interface IProbe
 {
     public static enum EProbeType
     {
-        TEST_CURVE_PROBE("Demo probe", "img/testprobe.png"), MK_CS200("Minolta CS-200", "img/cs200.png"), SPYDER_3("DataColor Spyder 3", "img/spyder3.png"), SPYDER_4("DataColor Spyder 4", "img/spyder4.png"), K10("Klein K-10", "img/k10.png"), GAMMA_AND_COLOR_PROBE("Probes couple", "img/testprobe.png"), SPECTRO_SPYDER3("Spectro + Spyder3", "img/testprobe.png");
+        TEST_CURVE_PROBE("Demo probe", "img/testprobe.png"), MK_CS200("Minolta CS-200", "img/cs200.png"), SPYDER_3("DataColor Spyder 3", "img/spyder3.png"), SPYDER_4("DataColor Spyder 4", "img/spyder4.png"), K10("Klein K-10", "img/k10.png"), GAMMA_AND_COLOR_PROBE("Probes couple", "img/testprobe.png")/*, SPECTRO_SPYDER3("Spectro + Spyder3", "img/testprobe.png")*/;
 
         private String _name = null;
         private String _image = null;
@@ -33,7 +33,7 @@ public interface IProbe
 
     }
 
-    public boolean isAvailable(String comPort) throws Exception;  
+      
     public boolean isOpen() ;
     public boolean open(String comPort) throws Exception;
     public void close();

@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JTextArea;
-
 import fr.hd3d.colortribe.color.type.Point2f;
 import fr.hd3d.colortribe.core.ColorHealerModel;
 import fr.hd3d.colortribe.core.MeasuresSet;
@@ -149,12 +147,5 @@ public class MeasuresCanvas extends GlLikeCanvas {
     }
 
     
-    public void repaint(JTextArea text) {
-       MeasuresSet set = ColorHealerModel._instance.getCurrentMeasuresSet();
-        float ymax = set.getYMaxDifferentialsPoints();
-        text.setText(":: Legend :: \nx -> color value [0;1]\t" + "y -> mesured value / target value [0:+inf]\n" + "Ymax = " + ((int) (ymax * 1000))
-                / 1000f + "\tTarget luminosity : " + ((int) (ColorHealerModel._instance.getTarget().getMaxLum() * 1000) / 1000f));
-        _ymax = ymax;
-        super.repaint();
-    }
+
 }

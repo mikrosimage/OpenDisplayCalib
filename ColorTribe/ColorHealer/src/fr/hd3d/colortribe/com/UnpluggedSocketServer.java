@@ -9,7 +9,7 @@ import fr.hd3d.colortribe.color.type.Point2f;
 
 public class UnpluggedSocketServer implements ISocketServer
 {
-    static public int DEFAULT_PORT = 7935;
+    
 
     static private UnpluggedSocketServer _instance = null;
     private Color _currentPatchColor = Color.CYAN;

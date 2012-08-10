@@ -7,7 +7,7 @@ import fr.hd3d.colortribe.color.type.Point2f;
  * This class is intented to provide informations about the
  * Planckian Locus.<br>
  * That is to say : the x,y CIE coordinates of the
- * blackbody at a given temperature T in °K.
+ * blackbody at a given temperature T in K.
  * <br><a href=http://en.wikipedia.org/wiki/Planckian_locus>
  * More information on wikipedia</a>.<br>
  * This is a fast implementation based upon precomputed values.<br>
@@ -19,9 +19,9 @@ import fr.hd3d.colortribe.color.type.Point2f;
  * 
  *
  */
-public class PlanckianLocus {
-    public static final int MIN_TEMPERATURE = 1000;
-    public static final int MAX_TEMPERATURE = 40000;
+class PlanckianLocus {
+    private static final int MIN_TEMPERATURE = 1000;
+    private static final int MAX_TEMPERATURE = 40000;
     // CIE 1931  2 degree Color Matching Functions (CMF) with Judd Vos corrections
     // values of x,y from 1000 K to 40 000 K
     private static final float xyValue2Deg[][] = { { 0.6499f, 0.3474f }, { 0.6361f, 0.3594f }, { 0.6226f, 0.3703f }, { 0.6095f, 0.3801f },
@@ -161,29 +161,29 @@ public class PlanckianLocus {
 
     /**
      * Computes the CIE x,y coordinates of the black body at
-     * the given temperature (in °K) and a viewing angle of 2 degrees.
+     * the given temperature (in K) and a viewing angle of 2 degrees.
      * 
      * The 2 vs 10 degree choice can be made based on how large the object's 
      * image on the retina is. Bigger means lower cone to rod ratio.
      * Thumb at arm's length is about 2 degrees; fist, 10.
-     * @param temperature in °K
+     * @param temperature in K
      * @return the CIE x,y coordinates of the equivalent black body.
      */
-    public static Point2f getBlackBodyCoordinatesAt2Degrees(final float temperature) {
+    static Point2f getBlackBodyCoordinatesAt2Degrees(final float temperature) {
         return getCoordinatesForTemperature(temperature, xyValue2Deg);
     }
 
     /**
      * Computes the CIE x,y coordinates of the black body at
-     * the given temperature (in °K) and a viewing angle of 10 degrees.
+     * the given temperature (in K) and a viewing angle of 10 degrees.
      * 
      * The 2 vs 10 degree choice can be made based on how large the object's 
      * image on the retina is. Bigger means lower cone to rod ratio.
      * Thumb at arm's length is about 2 degrees; fist, 10.
-     * @param temperature in °K
+     * @param temperature in K
      * @return the CIE x,y coordinates of the equivalent black body.
      */
-    public static Point2f getBlackBodyCoordinatesAt10Degrees(float temperature) {
+    static Point2f getBlackBodyCoordinatesAt10Degrees(float temperature) {
         return getCoordinatesForTemperature(temperature, xyValue10Deg);
     }
 
@@ -208,6 +208,6 @@ public class PlanckianLocus {
 
     private static void checkTemperature(final float temperature) {
         if (temperature < MIN_TEMPERATURE || temperature > MAX_TEMPERATURE)
-            throw new IndexOutOfBoundsException("Temperature must be betwen " + MIN_TEMPERATURE + " and " + MAX_TEMPERATURE + "°K");
+            throw new IndexOutOfBoundsException("Temperature must be betwen " + MIN_TEMPERATURE + " and " + MAX_TEMPERATURE + "��K");
     }
 }
