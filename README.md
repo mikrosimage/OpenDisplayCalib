@@ -28,7 +28,7 @@ Compilation
 To compile ColorLib_cpp and ColorKeeper, you'll need bjam (boost-build).  
 For both, customize the build file corresponding to your platform (build&#95;linux, build&#95;macOS, build&#95;windows) and launch it.  
 
-      To run correctly, ColorKeeper need to find some directory and files, see "colorkeeper&#95;install&#95;setup" directory in ColorKeeper github arborescence.
+      To run correctly, ColorKeeper needs to find some directory and files, see "colorkeeper&#95;install&#95;setup" directory in ColorKeeper github arborescence.
 
   * ColorHealer (**Java**)  
 To easily build ColorHealer, use [Maven](http://maven.apache.org/download.html) and run "mvn package" in ColorHealer directory.
@@ -57,7 +57,7 @@ Tested compilers
 > QT 4.5 / Boost 1.35 / MinGW 1.5.4 on Windows XP 32 bits
 
 - MacOSX
-> QT 4.5 / Boost 1.35 / Darwin on MacOSX 10.4 32 bits
+> QT 4.5 / Boost 1.35 / Darwin on MacOSX 10.4 32 bits  
 > QT 4.6 / Boost 1.46 / Darwin 4.2.1 on MacOSX 10.5 / 10.6 64 bits
 
 ___
