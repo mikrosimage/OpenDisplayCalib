@@ -9,9 +9,9 @@ The suite is composed of two tools :
 
 ![ColorKeeper and ColorHealer](https://lh5.googleusercontent.com/-CDoPae148_k/T_7sV-kVBCI/AAAAAAAAMoA/L2w2ZbGKpvc/s820/keeper_healer_screenshot.png "ColorTribe screenshot")
 
-[More screenshots](https://github.com/mikrosimage/OpenCalibrator/wiki/Screenshots).  
-[See features overview](https://github.com/mikrosimage/OpenCalibrator/wiki/Features-overview).  
-[See troubles shootings](https://github.com/mikrosimage/OpenCalibrator/wiki/Trouble-shootings).  
+[More screenshots](https://github.com/mikrosimage/OpenDisplayCalibrator/wiki/Screenshots).  
+[See features overview](https://github.com/mikrosimage/OpenDisplayCalibrator/wiki/Features-overview).  
+[See troubles shootings](https://github.com/mikrosimage/OpenDisplayCalibrator/wiki/Trouble-shootings).  
 ___
 License
 -------
@@ -21,7 +21,7 @@ ___
 Compilation
 -------
 - Getting the source  
->  git clone [git@github.com:mikrosimage/OpenCalibrator.git](git@github.com:mikrosimage/OpenCalibrator.git)
+>  git clone [git@github.com:mikrosimage/OpenDisplayCalibrator.git](git@github.com:mikrosimage/OpenDisplayCalibrator.git)
 - Compilation  
   * ColorLib_cpp / ColorKeeper  (**C++ / QT / Boost**)  
 (cf tested compilers below)  
@@ -35,11 +35,11 @@ To easily build ColorHealer, use [Maven](http://maven.apache.org/download.html) 
 
   * Probes support 
        * CS-200  
-[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenCalibrator/konica_minolta_cs200_precompiled_libs.zip) (161 ko)
+[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenDisplayCalibrator/konica_minolta_cs200_precompiled_libs.zip) (161 ko)
 (Windows only but can be ported)
 
        * K-10   
-[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenCalibrator/klein_k10_precompiled_libs.zip) (un-official SDK) (117 ko)
+[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenDisplayCalibrator/klein_k10_precompiled_libs.zip) (un-official SDK) (117 ko)
 (Windows only but we should use official SDK (Win / Mac / Lin) soon. 
 
        * Datacolor  
@@ -64,13 +64,13 @@ ___
 More informations
 -------
 - Public repository :
->[https://github.com/mikrosimage/OpenCalibrator.git](https://github.com/mikrosimage/OpenCalibrator.git)
+>[https://github.com/mikrosimage/OpenDisplayCalibrator.git](https://github.com/mikrosimage/OpenDisplayCalibrator.git)
 
 - The github issues module for bug report :
->[https://github.com/mikrosimage/OpenCalibrator/issues](https://github.com/mikrosimage/OpenCalibrator/issues)
+>[https://github.com/mikrosimage/OpenDisplayCalibrator/issues](https://github.com/mikrosimage/OpenDisplayCalibrator/issues)
 
 - Github Wiki :
->[https://github.com/mikrosimage/OpenCalibrator/wiki](https://github.com/mikrosimage/OpenCalibrator/wiki)
+>[https://github.com/mikrosimage/OpenDisplayCalibrator/wiki](https://github.com/mikrosimage/OpenDisplayCalibrator/wiki)
 
 - About Color pipelines for post-production :
 > [http://www.colorpipe.org/](http://www.colorpipe.org/)

@@ -4,4 +4,4 @@ It was developped before the [official SDK](http://kleininstruments.com/Download
 
 ColorHealer should definitively use the official one (TODO).
 
-Precompiled libraries can be found [here](https://github.com/downloads/mikrosimage/OpenCalibrator/klein_k10_precompiled_libs.zip).
+Precompiled libraries can be found [here](https://github.com/downloads/mikrosimage/OpenDisplayCalibrator/klein_k10_precompiled_libs.zip).
