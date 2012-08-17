@@ -15,7 +15,11 @@ The suite is composed of two tools :
 ___
 License
 -------
->TODO
+OpenDisplayCalibrator/ColorTribe is distributed using the modified BSD license. Please read the "LICENSE" file for the legal wording.
+
+To put it in a nutshell, OpenDisplayCalibrator is free, as well as freely modifiable and redistributable.
+
+You may use part or all of it in your own applications, whether proprietary or open, free or commercial or not.
 
 ___
 Compilation
