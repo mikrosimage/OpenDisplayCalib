@@ -23,6 +23,6 @@ In each mode, measures are displayed in a diagram (CIE 1931 or CIE 1976) and an 
 **Supported probes**
 * Konica-Minolta CS-200
 * Klein K-10
-* Datacolor Spyders (but you'll have to ask datacolor for a API autorization key
+* Datacolor Spyders but you'll have to ask Datacolor for an API autorization key. Contact C. David Tobie CDTobie@datacolor.com, Global Product Technology Manager at Datacolor.
 
-ColorHealer used to support EyeOne display and EyeOne Pro but we're not allowed to share this code in the opensource project.
+ColorHealer can support XRite's probes (EyeOne Display, EyeOne Pro, ColorMunki...) but to be able to use XRite SDK you'll need to sign a specific agreement with them. Your integration of the driver in ColorHealer source code must remain private.
