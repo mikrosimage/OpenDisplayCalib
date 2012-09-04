@@ -1,4 +1,4 @@
-![logo](https://lh5.googleusercontent.com/-axRo2XZwJ_g/T_7uxO-ctWI/AAAAAAAAMok/ntYiPjgq7qA/s200/ColorTribeLogo_small.png "logos") OpenDisplayCalibrator (aka ColorTribe)
+![logo](https://lh5.googleusercontent.com/-axRo2XZwJ_g/T_7uxO-ctWI/AAAAAAAAMok/ntYiPjgq7qA/s200/ColorTribeLogo_small.png "logos") OpenDisplayCalib (aka ColorTribe)
 ========================
 
 ColorTribe is a color measurement and calibration software suite for display devices.
@@ -9,15 +9,15 @@ The suite is composed of two tools :
 
 ![ColorKeeper and ColorHealer](https://lh5.googleusercontent.com/-CDoPae148_k/T_7sV-kVBCI/AAAAAAAAMoA/L2w2ZbGKpvc/s820/keeper_healer_screenshot.png "ColorTribe screenshot")
 
-[More screenshots](https://github.com/mikrosimage/OpenDisplayCalibrator/wiki/Screenshots).  
-[See features overview](https://github.com/mikrosimage/OpenDisplayCalibrator/wiki/Features-overview).  
-[See troubles shootings](https://github.com/mikrosimage/OpenDisplayCalibrator/wiki/Trouble-shootings).  
+[More screenshots](https://github.com/mikrosimage/OpenDisplayCalib/wiki/Screenshots).  
+[See features overview](https://github.com/mikrosimage/OpenDisplayCalib/wiki/Features-overview).  
+[See troubles shootings](https://github.com/mikrosimage/OpenDisplayCalib/wiki/Trouble-shootings).  
 ___
 License
 -------
-OpenDisplayCalibrator/ColorTribe is distributed using the modified BSD license. Please read the "LICENSE" file for the legal wording.
+OpenDisplayCalib/ColorTribe is distributed using the modified BSD license. Please read the "LICENSE" file for the legal wording.
 
-To put it in a nutshell, OpenDisplayCalibrator is free, as well as freely modifiable and redistributable.
+To put it in a nutshell, OpenDisplayCalib is free, as well as freely modifiable and redistributable.
 
 You may use part or all of it in your own applications, whether proprietary or open, free or commercial or not.
 
@@ -25,7 +25,7 @@ ___
 Compilation
 -------
 - Getting the source  
->  git clone [git@github.com:mikrosimage/OpenDisplayCalibrator.git](git@github.com:mikrosimage/OpenDisplayCalibrator.git)
+>  git clone [git@github.com:mikrosimage/OpenDisplayCalib.git](git@github.com:mikrosimage/OpenDisplayCalib.git)
 - Compilation  
   * ColorLib_cpp / ColorKeeper  (**C++ / QT / Boost**)  
 (cf tested compilers below)  
@@ -39,11 +39,11 @@ To easily build ColorHealer, use [Maven](http://maven.apache.org/download.html) 
 
   * Probes support 
        * CS-200  
-[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenDisplayCalibrator/konica_minolta_cs200_precompiled_libs.zip) (161 ko)
+[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenDisplayCalib/konica_minolta_cs200_precompiled_libs.zip) (161 ko)
 (Windows only but can be ported)
 
        * K-10   
-[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenDisplayCalibrator/klein_k10_precompiled_libs.zip) (un-official SDK) (117 ko)
+[Download precompiled libs](https://github.com/downloads/mikrosimage/OpenDisplayCalib/klein_k10_precompiled_libs.zip) (un-official SDK) (117 ko)
 (Windows only but we should use official SDK (Win / Mac / Lin) soon. 
 
        * Datacolor  
@@ -68,13 +68,13 @@ ___
 More informations
 -------
 - Public repository :
->[https://github.com/mikrosimage/OpenDisplayCalibrator.git](https://github.com/mikrosimage/OpenDisplayCalibrator.git)
+>[https://github.com/mikrosimage/OpenDisplayCalib.git](https://github.com/mikrosimage/OpenDisplayCalib.git)
 
 - The github issues module for bug report :
->[https://github.com/mikrosimage/OpenDisplayCalibrator/issues](https://github.com/mikrosimage/OpenDisplayCalibrator/issues)
+>[https://github.com/mikrosimage/OpenDisplayCalib/issues](https://github.com/mikrosimage/OpenDisplayCalib/issues)
 
 - Github Wiki :
->[https://github.com/mikrosimage/OpenDisplayCalibrator/wiki](https://github.com/mikrosimage/OpenDisplayCalibrator/wiki)
+>[https://github.com/mikrosimage/OpenDisplayCalib/wiki](https://github.com/mikrosimage/OpenDisplayCalib/wiki)
 
 - About Color pipelines for post-production :
 > [http://www.colorpipe.org/](http://www.colorpipe.org/)

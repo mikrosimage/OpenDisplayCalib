@@ -1,4 +1,4 @@
-OpenDisplayCalibrator / ColorTribe and all code, documentation, and other materials contained
+OpenDisplayCalib / ColorTribe and all code, documentation, and other materials contained
 therein are:
 
 Copyright 2012 Mikros Image and the other authors and contributors.
