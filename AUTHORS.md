@@ -15,4 +15,4 @@ Special Thanks to :
 
 for their advices and help.
 
-Project hosted by GitHub : [https://github.com/mikrosimage/OpenCalib](https://github.com/mikrosimage/OpenCalib)
+Project hosted by GitHub : [https://github.com/mikrosimage/OpenDisplayCalib](https://github.com/mikrosimage/OpenDisplayCalib)
