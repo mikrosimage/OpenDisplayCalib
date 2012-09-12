@@ -174,7 +174,7 @@ public:
 	void emitCorrectionChanged(unsigned int);
 	void emitPopMessage(QString title, QString message, bool weAreInTrouble);
 
-	const static unsigned int version_major = 1;
+	const static unsigned int version_major = 2;
 	const static std::string version_minor;
 
 	const unsigned int getXScreensNumber() const {
