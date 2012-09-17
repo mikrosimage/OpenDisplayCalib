@@ -1,5 +1,6 @@
 @echo off
 set BOOST_INCLUDE=path_to_boost_include\
+set QTDIR=path_to_qt
 set PATH=path_to_MinGW_install\bin\;%PATH%
 set MINGW_INCLUDE=path_to_MinGW_install\include\
 set MINGW_LIB=path_to_MinGW_install\lib\
