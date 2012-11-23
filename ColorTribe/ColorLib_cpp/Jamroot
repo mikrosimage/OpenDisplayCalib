@@ -40,9 +40,12 @@ project ColorLib
 	 <variant>debug:<define>DEBUG	
 	 <os>LINUX:<include>"/usr/X11R6/include"
 	 <os>LINUX:<include>"/usr/include"
-	 <os>LINUX:<linkflags>"-L/usr/X11R6/lib -lXxf86vm"				
-	 <os>LINUX:<linkflags>"-L/usr/lib64 -lx86"
-	 <os>LINUX:<linkflags>"-L$(EXTERNAL_LIBS)/nv_ctrl/lib -lnv-control"
+	 
+	 <os>LINUX:<include>"$(EXTERNAL_LIBS)/nv_ctrl/include" 
+	 <os>LINUX:<linkflags>"-L/usr/lib64 -lX11 -lXext"	
+	 <os>LINUX:<linkflags>"-L/usr/X11R6/lib -lXxf86vm"		
+	 <os>LINUX:<linkflags>"-L/usr/lib64 -lx86" 
+	 <os>LINUX:<linkflags>"-L$(EXTERNAL_LIBS)/nv_ctrl/lib -lnv-control" 
 	: usage-requirements
 		<include>src/calibration 
 		<include>src/calibration/correction 
