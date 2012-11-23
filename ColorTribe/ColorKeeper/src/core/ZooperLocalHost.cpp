@@ -10,6 +10,9 @@
 #ifdef __WIN32__
 #include "windows.h"
 #endif
+#ifdef __linux__	
+#include <GNULUTLoader.h>
+#endif
 
 #include <fstream>
 #include <iostream>
@@ -86,13 +89,21 @@ void ZooperLocalHost::searchDisorders() {
 		os <<"_effectiveScreenNumber = "<< _effectiveScreenNumber<<endl;
 		os <<"_calibableScreenNumber = "<< _calibableScreenNumber<<endl;
 		_isSeparateXScreenDisorder = true;
-	} else if(_qtNbScreens == _edidNbScreens) {// one x screen for several screens
-		_effectiveScreenNumber = _edidNbScreens;
-		_calibableScreenNumber = _xNbScreens;
-		os<<"XScreen disorder"<<endl;
-		os <<"_effectiveScreenNumber = "<< _effectiveScreenNumber<<endl;
-		os <<"_calibableScreenNumber = "<< _calibableScreenNumber<<endl;
-		_isXScreenDisorder = true;
+	} else if(_qtNbScreens == _edidNbScreens) {// one x screen for several screens	
+
+		if(GNULUTLoader::isScreenGammaAble(1)){
+			os<<"XScreenDisorder suppected but several LUTs can be loaded. Calibrable devices : "<<_qtNbScreens<<endl;
+			_effectiveScreenNumber = _qtNbScreens;
+			_calibableScreenNumber = _qtNbScreens;
+		}else{
+			_effectiveScreenNumber = _edidNbScreens;
+			_calibableScreenNumber = _xNbScreens;
+			os<<"XScreen disorder"<<endl;
+			os <<"_effectiveScreenNumber = "<< _effectiveScreenNumber<<endl;
+			os <<"_calibableScreenNumber = "<< _calibableScreenNumber<<endl;
+			_isXScreenDisorder = true;
+		}
+
 	} else if(_qtNbScreens != _edidNbScreens && _qtNbScreens>_edidNbScreens) {
 		os<<"XScreen disorder and one or more EDID(s) not found"<<endl;
 		os <<"_effectiveScreenNumber = "<< _effectiveScreenNumber<<endl;
@@ -101,6 +112,8 @@ void ZooperLocalHost::searchDisorders() {
 		_isMoreDesktopThanEdid = true;
 		_effectiveScreenNumber = _xNbScreens;
 		_calibableScreenNumber = _xNbScreens;
+
+		
 
 	} else {
 		os<<"Unexpected disorder. Try with nbScreen = "<<_xNbScreens<<endl;
