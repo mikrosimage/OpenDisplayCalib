@@ -76,9 +76,6 @@ alias gdi32 ;
 lib ws2_32 : : <file>$(MINGW_LIB)/libws2_32.a <os>NT ; 
 alias ws2_32 ;
 
-lib x86 : : <os>LINUX ; 
-alias x86 ; 
-
 lib nvctrl : : <file>$(EXTERNAL_LIBS)/nv_ctrl/lib/libnv-control.a <os>LINUX ; 
 alias nvctrl ;
 
@@ -90,7 +87,6 @@ lib ColorLib	:
 				setupapi 
 				gdi32
 				ws2_32	
-				x86			
 				nvctrl 
 				iphlpapi
 				:
@@ -106,8 +102,6 @@ exe DisplayDeviceScout	:
 				CORE_DEVICESCOUT_SOURCE 					 		
 				setupapi
 				gdi32	
-				ws2_32			
-			    x86 
 			    nvctrl 	
 			    iphlpapi
 				:
@@ -123,7 +117,6 @@ exe DisplayDeviceEnvVarSetter	:
 				setupapi
 				gdi32	
 				ws2_32			
-			    x86 
 			    nvctrl 	
 			    iphlpapi
 				:
@@ -138,7 +131,6 @@ exe ColorRamdac	:
 				src/colorRamdac/ColorRamDacMain.cpp
 				CORE_COLORRAMDAC_SOURCE		 		
 				gdi32
-				x86			
 				:
 				<link>static
 				<toolset>darwin:<linkflags>"-Wl,-syslibroot,/Developer/SDKs/MacOSX10.6.sdk -arch i386" 
