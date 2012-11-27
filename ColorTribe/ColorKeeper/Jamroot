@@ -48,6 +48,8 @@ alias CORE_SOURCES :
 		src/gui/QMiniPreviewPage.h
 		src/gui/QBalloonDialog.h
 		src/gui/QPLSlider.h
+		src/gui/QDbleClickLineEdit.h
+		src/gui/QDbleClickSpinBox.h
 		src/gui/QPatternsPushButton.h
 		src/gui/QPatternsWidgetItem.h
 		src/gui/QManagedApplication.h
