@@ -311,7 +311,7 @@ public class ProbeTargetStep extends Step
             springPan.add(primariesComentLab, con);
 
             JLabel gammaLab = new JLabel("Gamma : ");
-            final JTextField gammaTex = new JTextField("2.2");
+            final JTextField gammaTex = new JTextField(""+SimpleQuatuorTarget.DEFAULT_GAMMA);
             gammaTex.setPreferredSize(new Dimension(100, 20));
             gammaTex.addKeyListener(new KeyAdapter() {
                 @Override
@@ -331,7 +331,7 @@ public class ProbeTargetStep extends Step
             // targetPan.add(gammaPan);
 
             JLabel lumLab = new JLabel("Max luminosity : ");
-            final JTextField lumTex = new JTextField("80");
+            final JTextField lumTex = new JTextField("" + SimpleQuatuorTarget.DEFAULT_LUM);
             lumTex.setPreferredSize(new Dimension(100, 20));
             lumTex.addKeyListener(new KeyAdapter() {
                 @Override

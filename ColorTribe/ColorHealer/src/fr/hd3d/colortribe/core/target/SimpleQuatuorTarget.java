@@ -6,6 +6,8 @@ import fr.hd3d.colortribe.color.IRgbPrimary;
 
 public class SimpleQuatuorTarget extends AbstractTarget
 {
+	final static public int DEFAULT_LUM=100; 
+	final static public float DEFAULT_GAMMA=2.2f; 
 
     public SimpleQuatuorTarget(float gamma, float maxLum, IIlluminant colorTemp, IRgbPrimary primaries)
     {
