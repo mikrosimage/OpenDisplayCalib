@@ -9,7 +9,7 @@
 #define ILOCALHOST_H_
 
 #include <string>
-#include <qstring>
+#include <QString>
 #include <vector>
 #include "ZooperDisplayDevice.h"
 

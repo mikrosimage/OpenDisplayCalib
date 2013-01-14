@@ -40,9 +40,12 @@ project ColorLib
 	 <variant>debug:<define>DEBUG	
 	 <os>LINUX:<include>"/usr/X11R6/include"
 	 <os>LINUX:<include>"/usr/include"
-	 <os>LINUX:<linkflags>"-L/usr/X11R6/lib -lXxf86vm"				
-	 <os>LINUX:<linkflags>"-L/usr/lib64 -lx86"
-	 <os>LINUX:<linkflags>"-L$(EXTERNAL_LIBS)/nv_ctrl/lib -lnv-control"
+	 
+	 <os>LINUX:<include>"$(EXTERNAL_LIBS)/nv_ctrl/include" 
+	 <os>LINUX:<linkflags>"-L/usr/lib64 -lX11 -lXext"	
+	 <os>LINUX:<linkflags>"-L/usr/X11R6/lib -lXxf86vm"		
+	 <os>LINUX:<linkflags>"-L/usr/lib64 -lx86" 
+	 <os>LINUX:<linkflags>"-L$(EXTERNAL_LIBS)/nv_ctrl/lib -lnv-control" 
 	: usage-requirements
 		<include>src/calibration 
 		<include>src/calibration/correction 
@@ -73,9 +76,6 @@ alias gdi32 ;
 lib ws2_32 : : <file>$(MINGW_LIB)/libws2_32.a <os>NT ; 
 alias ws2_32 ;
 
-lib x86 : : <os>LINUX ; 
-alias x86 ; 
-
 lib nvctrl : : <file>$(EXTERNAL_LIBS)/nv_ctrl/lib/libnv-control.a <os>LINUX ; 
 alias nvctrl ;
 
@@ -87,7 +87,6 @@ lib ColorLib	:
 				setupapi 
 				gdi32
 				ws2_32	
-				x86			
 				nvctrl 
 				iphlpapi
 				:
@@ -103,8 +102,6 @@ exe DisplayDeviceScout	:
 				CORE_DEVICESCOUT_SOURCE 					 		
 				setupapi
 				gdi32	
-				ws2_32			
-			    x86 
 			    nvctrl 	
 			    iphlpapi
 				:
@@ -120,7 +117,6 @@ exe DisplayDeviceEnvVarSetter	:
 				setupapi
 				gdi32	
 				ws2_32			
-			    x86 
 			    nvctrl 	
 			    iphlpapi
 				:
@@ -135,7 +131,6 @@ exe ColorRamdac	:
 				src/colorRamdac/ColorRamDacMain.cpp
 				CORE_COLORRAMDAC_SOURCE		 		
 				gdi32
-				x86			
 				:
 				<link>static
 				<toolset>darwin:<linkflags>"-Wl,-syslibroot,/Developer/SDKs/MacOSX10.6.sdk -arch i386" 

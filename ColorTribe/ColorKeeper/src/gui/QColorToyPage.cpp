@@ -11,7 +11,9 @@
 #include "QLutDisplay.h"
 #include "QGammaSlider.h"
 #include "QPLSlider.h"
+#include "QDbleClickLineEdit.h"
 #include "GuiSizeDef.h"
+#include "QDbleClickSpinBox.h"
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QGroupBox>
@@ -19,7 +21,6 @@
 #include <QSlider>
 #include <QPushButton>
 #include <QComboBox>
-#include <QDoubleSpinBox>
 #include <iostream>
 #include <sstream>
 
@@ -48,9 +49,10 @@ QColorToyPage::QColorToyPage(const ZooperDisplayDevice & dispDev,
 	_customLuts->addItems(ColorKeeperModel::Instance().getCustomLuts());
 
 	connect(_customLuts, SIGNAL(currentIndexChanged ( const QString & )), this, SLOT(customLutChanged(const QString & )));
+	const float plDefaultValue = 0.0f;
 
-	QDoubleSpinBox *plRLab = new QDoubleSpinBox();
-	plRLab->setValue(0.0f);
+	QDbleClickSpinBox *plRLab = new QDbleClickSpinBox(plDefaultValue);
+	plRLab->setValue(plDefaultValue);
 	plRLab->setMaximum(ColorKeeperModel::s_PLUpBound);
 	plRLab->setMinimum(ColorKeeperModel::s_PLDownBound);
 	plRLab->setDecimals(0);
@@ -60,9 +62,9 @@ QColorToyPage::QColorToyPage(const ZooperDisplayDevice & dispDev,
 	QHBoxLayout *plRLayout = new QHBoxLayout;
 	plRLayout->addWidget(plRLab);
 	plRLayout->addWidget(_plRSlider);
-	QDoubleSpinBox *plGLab = new QDoubleSpinBox();
 
-	plGLab->setValue(0.0f);
+	QDbleClickSpinBox *plGLab = new QDbleClickSpinBox(plDefaultValue);
+	plGLab->setValue(plDefaultValue);
 	plGLab->setMaximum(ColorKeeperModel::s_PLUpBound);
 	plGLab->setMinimum(ColorKeeperModel::s_PLDownBound);
 	plGLab->setDecimals(0);
@@ -72,8 +74,9 @@ QColorToyPage::QColorToyPage(const ZooperDisplayDevice & dispDev,
 	QHBoxLayout *plGLayout = new QHBoxLayout;
 	plGLayout->addWidget(plGLab);
 	plGLayout->addWidget(_plGSlider);
-	QDoubleSpinBox *plBLab = new QDoubleSpinBox();
-	plBLab->setValue(0.0f);
+
+	QDbleClickSpinBox *plBLab = new QDbleClickSpinBox(plDefaultValue);
+	plBLab->setValue(plDefaultValue);
 	plBLab->setMaximum(ColorKeeperModel::s_PLUpBound);
 	plBLab->setMinimum(ColorKeeperModel::s_PLDownBound);
 	plBLab->setDecimals(0);
@@ -105,8 +108,10 @@ QColorToyPage::QColorToyPage(const ZooperDisplayDevice & dispDev,
 
 	QGroupBox *gammaGroup = new QGroupBox(tr("Gamma"));
 	//_slidLab = new QLabel("1.0");
-	_slidLab = new QDoubleSpinBox();
-	_slidLab->setValue(1.0f);
+	const float gDefaultValue = 1.0f;
+
+	_slidLab = new QDbleClickSpinBox(gDefaultValue);
+	_slidLab->setValue(gDefaultValue);
 	_slidLab->setMaximum(ColorKeeperModel::s_gammaUpBound);
 	_slidLab->setMinimum(ColorKeeperModel::s_gammaDownBound);
 	_slidLab->setDecimals(1);

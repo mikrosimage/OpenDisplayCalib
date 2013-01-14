@@ -66,6 +66,25 @@ int GNULUTLoader::setGammaRamp(const int screenIndex,
 	return 0;
 }
 
+bool GNULUTLoader::isScreenGammaAble(const unsigned int screenIndex){
+	Display* dpy = XOpenDisplay(NULL);
+	bool res;
+	int rampSize = -1;
+	try {
+		res = XF86VidModeGetGammaRampSize(dpy, screenIndex, &rampSize);
+	} catch(...) {
+		res=false;
+	}
+
+	if(rampSize<=0)
+		res=false;
+
+	XCloseDisplay(dpy) ;
+
+	return res;
+
+}
+
 unsigned short* GNULUTLoader::getGammaRamp(const int screenIndex, int * rampSize) const
 throw (CannotGetLutException) {
 

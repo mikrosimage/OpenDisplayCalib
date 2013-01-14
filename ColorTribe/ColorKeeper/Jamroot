@@ -48,6 +48,8 @@ alias CORE_SOURCES :
 		src/gui/QMiniPreviewPage.h
 		src/gui/QBalloonDialog.h
 		src/gui/QPLSlider.h
+		src/gui/QDbleClickLineEdit.h
+		src/gui/QDbleClickSpinBox.h
 		src/gui/QPatternsPushButton.h
 		src/gui/QPatternsWidgetItem.h
 		src/gui/QManagedApplication.h
@@ -74,9 +76,9 @@ project ColorKeeper
 					<include>$(BOOST_INCLUDE)
 
 					<os>LINUX:<include>"/usr/X11R6/include"
-					<os>LINUX:<include>"/usr/include"
+					<os>LINUX:<include>"/usr/include"					
 	 				<os>LINUX:<linkflags>"-L$(QTDIR)/lib  -L$(EXTERNAL_LIBS)/SDL_ttf-2.0.10/SDL_ttf/lib -L/usr/lib64 -LGL -L/usr/X11R6/lib"			
-	 				<os>LINUX:<linkflags>" -lpng  -lXxf86vm -lXft -lXrender -lSDL_ttf -lx86 -lGL -lXxf86vm -lx86"
+	 				<os>LINUX:<linkflags>" -lpng -lX11 -lfontconfig -lgobject-2.0 -lfreetype -lgthread-2.0 -lz -ldl -lXxf86vm -lXft -lXrender -lSDL_ttf -lx86 -lGL -lXxf86vm -lx86 -lXext"
 
 	 				<os>MACOSX:<linkflags>" -L$(QTDIR)/lib"
 					
@@ -117,10 +119,10 @@ lib x86 : : <os>LINUX ;
 alias x86 ; 
 
 
-lib gtk : : <file>/usr/lib64/libgtk-x11-2.0.so.0.1800.6 <os>LINUX ; 
+lib gtk : : <file>/usr/lib64/libgtk-x11-2.0.so <os>LINUX ; 
 alias gtk ; 
 
-lib glib : : <file>/usr/lib64/libglib-2.0.so.0.2200.4 <os>LINUX ; 
+lib glib : : <file>/usr/lib64/libglib-2.0.so <os>LINUX ; 
 alias glib ;
 
 

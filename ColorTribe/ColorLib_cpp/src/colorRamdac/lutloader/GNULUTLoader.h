@@ -12,6 +12,7 @@ public:
 			setGammaRamp(const int screenIndex,
 					const LUT2DCorrection * const lut) const throw (CannotSetLutException);
 	unsigned short* getGammaRamp(const int screenIndex, int * rampSize) const throw (CannotGetLutException);
+	static bool isScreenGammaAble(const unsigned int screenIndex);
 #else
 	int setGammaRamp(const int screenIndex, const LUT2DCorrection * const lut) const throw (CannotSetLutException) =0;
 	unsigned short* getGammaRamp(const int screenIndex, int * rampSize) const throw (CannotGetLutException) =0;

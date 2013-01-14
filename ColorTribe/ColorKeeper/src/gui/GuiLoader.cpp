@@ -23,7 +23,7 @@
 #include <QSystemTrayIcon>
 #include <QSettings>
 #include <QSharedMemory>
-#include <QTPlugin>
+#include <QtPlugin>
 #include <QFile>
 #include <QString>
 #include <QStringList>
