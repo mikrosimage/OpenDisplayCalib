@@ -41,12 +41,10 @@ public class CS200Probe extends AbstractProbe
         }
         catch (CS200Exception e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         catch (Exception e1)
         {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }
@@ -194,5 +192,9 @@ public class CS200Probe extends AbstractProbe
     {
         return _serialNumber;
     }
+
+	public boolean isSpecificCalibrationRequired() {
+		return false;
+	}
 
 }

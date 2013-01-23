@@ -121,8 +121,11 @@ class Spyder4Probe extends AbstractProbe
 
     public String getSerialInfo()
     {
-        // TODO Auto-generated method stub
         return "SN " + _serialNumber + " Dll " + _dllVersion + " HW" + _hardWareVersion;
     }
+
+	public boolean isSpecificCalibrationRequired() {
+		return false;
+	}
 
 }

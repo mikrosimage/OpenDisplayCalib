@@ -53,487 +53,484 @@ import fr.hd3d.colortribe.gui.CustomTabbedPane;
 import fr.hd3d.colortribe.gui.JHealerColors;
 import fr.hd3d.colortribe.gui.components.JImageCanvas;
 
+public class ProbeTargetStep extends Step {
 
-public class ProbeTargetStep extends Step
-{
-
-    /**
+	/**
      * 
      */
-    public static String NAME = "Probe and Target";
-    private static final long serialVersionUID = 7306873765422762571L;
 
-    private JList _list;
-    private DefaultListModel _listModel;
+	public static String NAME = "Probe and Target";
+	private static final long serialVersionUID = 7306873765422762571L;
 
-    // private JButton _refreshBut;
-    private JLabel _refreshLab;
-    private JScrollPane _listScrollPane;
+	private JList _list;
+	private DefaultListModel _listModel;
 
-    private JButton _calibBut;
-    private JTextArea _calibLab;
-    private CustomTabbedPane _tabPane;
+	// private JButton _refreshBut;
+	private JLabel _refreshLab;
+	private JScrollPane _listScrollPane;
 
-    private EProbeType _selectedProbe = null;
-    private IIlluminant _selectedIlluminant = null;
-    private IRgbPrimary _selectedPrimaries = null;
-    private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
-    private JPanel _frequencyPanel;
-    private JTextField _frequencyTextField;
-    private JTextField _durationTextField;
+	private JButton _calibBut;
+	private JTextArea _calibLab;
+	private CustomTabbedPane _tabPane;
 
-    private static List<String> _dependantSteps = new ArrayList<String>();
-    static
-    {
-        _dependantSteps.add(LuminosityContrastStep.NAME);
-        _dependantSteps.add(WhiteStep.NAME);
-        _dependantSteps.add(SimpleMeasuresStep.NAME);
-        _dependantSteps.add(ContinuousMeasuresStep.NAME);
-        _dependantSteps.add(BatchMeasuresStep.NAME);
-    }
+	private EProbeType _selectedProbe = null;
+	private IIlluminant _selectedIlluminant = null;
+	private IRgbPrimary _selectedPrimaries = null;
+	private StepStatus _oldStatus = StepStatus.NOT_COMPLETE;
+	private JPanel _frequencyPanel;
+	private JTextField _frequencyTextField;
+	private JTextField _durationTextField;
+	private AbstractProbe _lastSelectedProbe;
 
-    public ProbeTargetStep(StepStatus startStatus)
-    {
-        super(NAME, "Choose your target and probe\nCalibrate your probe", startStatus, _dependantSteps);
+	private static List<String> _dependantSteps = new ArrayList<String>();
+	static {
+		_dependantSteps.add(LuminosityContrastStep.NAME);
+		_dependantSteps.add(WhiteStep.NAME);
+		_dependantSteps.add(SimpleMeasuresStep.NAME);
+		_dependantSteps.add(ContinuousMeasuresStep.NAME);
+		_dependantSteps.add(BatchMeasuresStep.NAME);
+	}
 
-    }
+	public ProbeTargetStep(StepStatus startStatus) {
+		super(NAME, "Choose your target and probe\nCalibrate your probe",
+				startStatus, _dependantSteps);
 
-    public boolean canUnLockDependantStep()
-    {
-        return _status == StepStatus.OK;
-    }
+	}
 
-    private void sniffProbes()
-    {
-        Runnable runnable = new Runnable() {
-            public void run()
-            {
-                _refreshLab.setText("in progress...");
-                _listScrollPane.setEnabled(false);
-                _listModel.clear();
-                Set<EProbeType> probes = ColorHealerModel._instance.getProbesPool().getProbesList();
-                for (EProbeType probeType : probes)
-                {
-                    _listModel.addElement(probeType);
-                }
-                // _refreshBut.setVisible(true);
-                int probesCount = probes.size();
-                if (probesCount < 2)
-                    _refreshLab.setText(probesCount + " probe found.");
-                else
-                    _refreshLab.setText(probesCount + " probes found.");
-                _listScrollPane.setEnabled(true);
-            }
-        };
-        Thread thread = new Thread(runnable, "probeListe");
-        thread.start();
-    }
+	public boolean canUnLockDependantStep() {
+		return _status == StepStatus.OK;
+	}
 
-    public void init()
-    {
-        if (!_isInit)
-        {
-            JPanel container = new JPanel();
+	private void sniffProbes() {
+		Runnable runnable = new Runnable() {
+			public void run() {
+				_refreshLab.setText("in progress...");
+				_listScrollPane.setEnabled(false);
+				_listModel.clear();
+				Set<EProbeType> probes = ColorHealerModel._instance
+						.getProbesPool().getProbesList();
+				for (EProbeType probeType : probes) {
+					_listModel.addElement(probeType);
+				}
+				// _refreshBut.setVisible(true);
+				int probesCount = probes.size();
+				if (probesCount < 2)
+					_refreshLab.setText(probesCount + " probe found.");
+				else
+					_refreshLab.setText(probesCount + " probes found.");
+				_listScrollPane.setEnabled(true);
+			}
+		};
+		Thread thread = new Thread(runnable, "probeListe");
+		thread.start();
+	}
 
-            container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-            container.setPreferredSize(new Dimension(_width, _height - 5));
+	public void init() {
+		if (!_isInit) {
+			JPanel container = new JPanel();
 
-            _tabPane = new CustomTabbedPane(this);
+			container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+			container.setPreferredSize(new Dimension(_width, _height - 5));
 
-            // Probe
-            JPanel probePan = new JPanel(new SpringLayout());
-            TitledBorder tiledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),
-                    "Probe");
-            tiledBorder.setTitleColor(JHealerColors.TEXT_COLOR);
-            probePan.setBorder(tiledBorder);
+			_tabPane = new CustomTabbedPane(this);
 
-            container.add(probePan);
-            getContentPane().add(container, BorderLayout.CENTER);
-            _isInit = true;
-            final JImageCanvas illus = new JImageCanvas("img/void_image.png", 100, 100);
-            final JPanel illusPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            illusPan.add(illus);
-            probePan.add(illusPan);
+			// Probe
+			JPanel probePan = new JPanel(new SpringLayout());
+			TitledBorder tiledBorder = BorderFactory.createTitledBorder(
+					BorderFactory.createLineBorder(Color.black), "Probe");
+			tiledBorder.setTitleColor(JHealerColors.TEXT_COLOR);
+			probePan.setBorder(tiledBorder);
 
-            _listModel = new DefaultListModel();
-            _list = new JList(_listModel);
-            _list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            _list.setSelectedIndex(-1);
-            _list.setPreferredSize(new Dimension(200, 100));
-            // list.addListSelectionListener(this);
-            _list.setVisibleRowCount(5);
+			container.add(probePan);
+			getContentPane().add(container, BorderLayout.CENTER);
+			_isInit = true;
+			final JImageCanvas illus = new JImageCanvas("img/void_image.png",
+					100, 100);
+			final JPanel illusPan = new JPanel(
+					new FlowLayout(FlowLayout.CENTER));
+			illusPan.add(illus);
+			probePan.add(illusPan);
 
-            _list.addListSelectionListener(new ListSelectionListener() {
+			_listModel = new DefaultListModel();
+			_list = new JList(_listModel);
+			_list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			_list.setSelectedIndex(-1);
+			_list.setPreferredSize(new Dimension(200, 100));
+			// list.addListSelectionListener(this);
+			_list.setVisibleRowCount(5);
 
-                public void valueChanged(ListSelectionEvent e)
-                {
+			_list.addListSelectionListener(new ListSelectionListener() {
 
-                    _selectedProbe = (EProbeType) _list.getSelectedValue();
-                    if (_selectedProbe != null)
-                    {
-                        ColorHealerModel._instance.setProbe(_selectedProbe);
-                        _calibBut.setEnabled(true);
-                        if (_selectedProbe == EProbeType.MK_CS200)
-                        {
-                            _frequencyPanel.setVisible(true);
-                            CS200Probe probe = (CS200Probe) ColorHealerModel._instance.getProbe();
-                            try
-                            {
-                                _frequencyTextField.setText("" + (probe.getCurrentFrequency() / 100));
-                                _durationTextField.setText("" + (probe.getCurrentSpeed()));
-                            }
-                            catch (Exception e2)
-                            {}
-                        }
-                        else
-                            _frequencyPanel.setVisible(false);
-                        illus.setImage(_selectedProbe.getImage());
-                        illusPan.repaint();
+				public void valueChanged(ListSelectionEvent e) {
 
-                        _calibLab.setText(ColorHealerModel._instance.getProbe().getProbeDescription());
-                    }
-                    lock("PROBE_CHANGE");
+					_selectedProbe = (EProbeType) _list.getSelectedValue();
+					if (_selectedProbe != null) {
+						_lastSelectedProbe = ColorHealerModel._instance
+								.getProbe();
+						ColorHealerModel._instance.setProbe(_selectedProbe);
+						_calibBut.setEnabled(true);
+						if (_selectedProbe == EProbeType.MK_CS200) {
+							_frequencyPanel.setVisible(true);
+							CS200Probe probe = (CS200Probe) ColorHealerModel._instance
+									.getProbe();
+							try {
+								_frequencyTextField.setText(""
+										+ (probe.getCurrentFrequency() / 100));
+								_durationTextField.setText(""
+										+ (probe.getCurrentSpeed()));
+							} catch (Exception e2) {
+							}
+						} else
+							_frequencyPanel.setVisible(false);
+						illus.setImage(_selectedProbe.getImage());
+						illusPan.repaint();
 
-                }
+						_calibLab.setText(ColorHealerModel._instance.getProbe()
+								.getProbeDescription());
+					}
+					lock("PROBE_CHANGE");
 
-            });
-            _listScrollPane = new JScrollPane(_list);
-            _listScrollPane.setPreferredSize(new Dimension(210, 110));
+				}
 
-            _refreshLab = new JLabel("in progress...");
+			});
+			_listScrollPane = new JScrollPane(_list);
+			_listScrollPane.setPreferredSize(new Dimension(210, 110));
 
-            JPanel refreshLabPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            refreshLabPan.add(_refreshLab);
-            probePan.add(refreshLabPan);
+			_refreshLab = new JLabel("in progress...");
 
-            JPanel listPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            listPan.add(_listScrollPane);
-            probePan.add(listPan);
+			JPanel refreshLabPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			refreshLabPan.add(_refreshLab);
+			probePan.add(refreshLabPan);
 
-            JPanel refreshButPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            probePan.add(refreshButPan);
+			JPanel listPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			listPan.add(_listScrollPane);
+			probePan.add(listPan);
 
-            sniffProbes();
+			JPanel refreshButPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			probePan.add(refreshButPan);
 
-            // Lay out the panel.
-            SpringUtilities.makeCompactGrid(probePan, 4, 1, // rows, cols
-                    2, 2, // initialX, initialY
-                    1, 1);// xPad, yPad
+			sniffProbes();
 
-            // Target
+			// Lay out the panel.
+			SpringUtilities.makeCompactGrid(probePan, 4, 1, // rows, cols
+					2, 2, // initialX, initialY
+					1, 1);// xPad, yPad
 
-            JPanel targetPan = new JPanel(new FlowLayout(FlowLayout.LEFT));
-            JPanel springPan = new JPanel(new GridBagLayout());
+			// Target
 
-            TitledBorder tiledBorder2 = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),
-                    "Target");
-            tiledBorder2.setTitleColor(JHealerColors.TEXT_COLOR);
-            targetPan.setBorder(tiledBorder2);
+			JPanel targetPan = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JPanel springPan = new JPanel(new GridBagLayout());
 
-            JLabel colTempLab = new JLabel("Color temperature : ");
-            final JComboBox colorTemperatureCombo = new JComboBox();
-            colorTemperatureCombo.setPreferredSize(new Dimension(120, 20));
+			TitledBorder tiledBorder2 = BorderFactory.createTitledBorder(
+					BorderFactory.createLineBorder(Color.black), "Target");
+			tiledBorder2.setTitleColor(JHealerColors.TEXT_COLOR);
+			targetPan.setBorder(tiledBorder2);
 
-            List<IIlluminant> custIlluminants = ColorHealerModel._instance.getCustomIlluminants();
-            for (IIlluminant iIlluminant : custIlluminants)
-            {
-                colorTemperatureCombo.addItem(iIlluminant);
-                System.out.println(iIlluminant);
-            }
-            EStandardIlluminants[] illuminants = EStandardIlluminants.values();
-            for (EStandardIlluminants e : illuminants)
-            {
-                colorTemperatureCombo.addItem(e);
-            }
+			JLabel colTempLab = new JLabel("Color temperature : ");
+			final JComboBox colorTemperatureCombo = new JComboBox();
+			colorTemperatureCombo.setPreferredSize(new Dimension(120, 20));
 
-            colorTemperatureCombo.setSelectedItem(EStandardIlluminants.D65);
-            _selectedIlluminant = (EStandardIlluminants) colorTemperatureCombo.getSelectedItem();
-            final JLabel illuminantComentLab = new JLabel(_selectedIlluminant.getComment());
-            colorTemperatureCombo.addItemListener(new ItemListener() {
+			List<IIlluminant> custIlluminants = ColorHealerModel._instance
+					.getCustomIlluminants();
+			for (IIlluminant iIlluminant : custIlluminants) {
+				colorTemperatureCombo.addItem(iIlluminant);
+				System.out.println(iIlluminant);
+			}
+			EStandardIlluminants[] illuminants = EStandardIlluminants.values();
+			for (EStandardIlluminants e : illuminants) {
+				colorTemperatureCombo.addItem(e);
+			}
 
-                public void itemStateChanged(ItemEvent e)
-                {
-                    _selectedIlluminant = (IIlluminant) colorTemperatureCombo.getSelectedItem();
-                    illuminantComentLab.setText(_selectedIlluminant.getComment());
-                    if (_status == StepStatus.OK)
-                    {
-                        lock("COLOR_TEMP_CHANGED");
-                    }
-                }
+			colorTemperatureCombo.setSelectedItem(EStandardIlluminants.D65);
+			_selectedIlluminant = (EStandardIlluminants) colorTemperatureCombo
+					.getSelectedItem();
+			final JLabel illuminantComentLab = new JLabel(
+					_selectedIlluminant.getComment());
+			colorTemperatureCombo.addItemListener(new ItemListener() {
 
-            });
-            // /////////
-            JLabel primariesLab = new JLabel("Primaries : ");
-            final JComboBox primariesCombo = new JComboBox();
-            colorTemperatureCombo.setPreferredSize(new Dimension(120, 20));
-            List<IRgbPrimary> custPrimaries = ColorHealerModel._instance.getCustomPrimaries();
-            for (IRgbPrimary iRgbPrimary : custPrimaries)
-            {
-                primariesCombo.addItem(iRgbPrimary);
-            }
-            EStandardRgbPrimaries[] primaries = EStandardRgbPrimaries.values();
-            for (EStandardRgbPrimaries e : primaries)
-            {
-                primariesCombo.addItem(e);
-            }
-            primariesCombo.setSelectedItem(EStandardRgbPrimaries.REC709);
-            _selectedPrimaries = (EStandardRgbPrimaries) primariesCombo.getSelectedItem();
-            final JLabel primariesComentLab = new JLabel(_selectedPrimaries.getComment());
-            primariesCombo.addItemListener(new ItemListener() {
+				public void itemStateChanged(ItemEvent e) {
+					_selectedIlluminant = (IIlluminant) colorTemperatureCombo
+							.getSelectedItem();
+					illuminantComentLab.setText(_selectedIlluminant
+							.getComment());
+					if (_status == StepStatus.OK) {
+						lock("COLOR_TEMP_CHANGED");
+					}
+				}
 
-                public void itemStateChanged(ItemEvent e)
-                {
-                    _selectedPrimaries = (IRgbPrimary) primariesCombo.getSelectedItem();
-                    primariesComentLab.setText(_selectedPrimaries.getComment());
-                    if (_status == StepStatus.OK)
-                    {
-                        lock("PRIMARIES_CHANGED");
-                    }
-                }
+			});
+			// /////////
+			JLabel primariesLab = new JLabel("Primaries : ");
+			final JComboBox primariesCombo = new JComboBox();
+			colorTemperatureCombo.setPreferredSize(new Dimension(120, 20));
+			List<IRgbPrimary> custPrimaries = ColorHealerModel._instance
+					.getCustomPrimaries();
+			for (IRgbPrimary iRgbPrimary : custPrimaries) {
+				primariesCombo.addItem(iRgbPrimary);
+			}
+			EStandardRgbPrimaries[] primaries = EStandardRgbPrimaries.values();
+			for (EStandardRgbPrimaries e : primaries) {
+				primariesCombo.addItem(e);
+			}
+			primariesCombo.setSelectedItem(EStandardRgbPrimaries.REC709);
+			_selectedPrimaries = (EStandardRgbPrimaries) primariesCombo
+					.getSelectedItem();
+			final JLabel primariesComentLab = new JLabel(
+					_selectedPrimaries.getComment());
+			primariesCombo.addItemListener(new ItemListener() {
 
-            });
-            GridBagConstraints con = new GridBagConstraints();
-            con.anchor = GridBagConstraints.FIRST_LINE_START;
-            con.insets = new Insets(0, 4, 4, 0);
-            con.gridx = 0;
-            con.gridy = 0;
-            springPan.add(colTempLab, con);
-            con.gridx = 1;
-            springPan.add(colorTemperatureCombo, con);
-            con.gridx = 2;
-            springPan.add(illuminantComentLab, con);
-            con.gridx = 0;
-            con.gridy = 1;
-            springPan.add(primariesLab, con);
-            con.gridx = 1;
-            springPan.add(primariesCombo, con);
-            con.gridx = 2;
-            springPan.add(primariesComentLab, con);
+				public void itemStateChanged(ItemEvent e) {
+					_selectedPrimaries = (IRgbPrimary) primariesCombo
+							.getSelectedItem();
+					primariesComentLab.setText(_selectedPrimaries.getComment());
+					if (_status == StepStatus.OK) {
+						lock("PRIMARIES_CHANGED");
+					}
+				}
 
-            JLabel gammaLab = new JLabel("Gamma : ");
-            final JTextField gammaTex = new JTextField(""+SimpleQuatuorTarget.DEFAULT_GAMMA);
-            gammaTex.setPreferredSize(new Dimension(100, 20));
-            gammaTex.addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyTyped(KeyEvent e)
-                {
-                    super.keyTyped(e);
-                    lock("GAMMA_CHANGED");
-                }
-            });
+			});
+			GridBagConstraints con = new GridBagConstraints();
+			con.anchor = GridBagConstraints.FIRST_LINE_START;
+			con.insets = new Insets(0, 4, 4, 0);
+			con.gridx = 0;
+			con.gridy = 0;
+			springPan.add(colTempLab, con);
+			con.gridx = 1;
+			springPan.add(colorTemperatureCombo, con);
+			con.gridx = 2;
+			springPan.add(illuminantComentLab, con);
+			con.gridx = 0;
+			con.gridy = 1;
+			springPan.add(primariesLab, con);
+			con.gridx = 1;
+			springPan.add(primariesCombo, con);
+			con.gridx = 2;
+			springPan.add(primariesComentLab, con);
 
-            // JPanel gammaPan = new JPanel(new SpringLayout());
-            con.gridx = 0;
-            con.gridy = 2;
-            springPan.add(gammaLab, con);
-            con.gridx = 1;
-            springPan.add(gammaTex, con);
-            // targetPan.add(gammaPan);
+			JLabel gammaLab = new JLabel("Gamma : ");
+			final JTextField gammaTex = new JTextField(""
+					+ SimpleQuatuorTarget.DEFAULT_GAMMA);
+			gammaTex.setPreferredSize(new Dimension(100, 20));
+			gammaTex.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					super.keyTyped(e);
+					lock("GAMMA_CHANGED");
+				}
+			});
 
-            JLabel lumLab = new JLabel("Max luminosity : ");
-            final JTextField lumTex = new JTextField("" + SimpleQuatuorTarget.DEFAULT_LUM);
-            lumTex.setPreferredSize(new Dimension(100, 20));
-            lumTex.addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyTyped(KeyEvent e)
-                {
-                    super.keyTyped(e);
-                    lock("LUM_CHANGED");
-                }
-            });
-            // JPanel lumPan = new JPanel(new SpringLayout());
-            con.gridx = 0;
-            con.gridy = 3;
-            springPan.add(lumLab, con);
-            con.gridx = 1;
-            springPan.add(lumTex, con);
-            // targetPan.add(lumPan);
+			// JPanel gammaPan = new JPanel(new SpringLayout());
+			con.gridx = 0;
+			con.gridy = 2;
+			springPan.add(gammaLab, con);
+			con.gridx = 1;
+			springPan.add(gammaTex, con);
+			// targetPan.add(gammaPan);
 
-            targetPan.add(springPan);
+			JLabel lumLab = new JLabel("Max luminosity : ");
+			final JTextField lumTex = new JTextField(""
+					+ SimpleQuatuorTarget.DEFAULT_LUM);
+			lumTex.setPreferredSize(new Dimension(100, 20));
+			lumTex.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					super.keyTyped(e);
+					lock("LUM_CHANGED");
+				}
+			});
+			// JPanel lumPan = new JPanel(new SpringLayout());
+			con.gridx = 0;
+			con.gridy = 3;
+			springPan.add(lumLab, con);
+			con.gridx = 1;
+			springPan.add(lumTex, con);
+			// targetPan.add(lumPan);
 
-            // calibrate
-            JPanel calibPan = new JPanel(new GridLayout(2, 1));
-            TitledBorder tiledBorder3 = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),
-                    "Set up probe");
-            tiledBorder3.setTitleColor(JHealerColors.TEXT_COLOR);
-            calibPan.setBorder(tiledBorder3);
+			targetPan.add(springPan);
 
-            _calibLab = new JTextArea("\n");
-            // JPanel calibLabPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            // calibLabPan.add(_calibLab);
+			// calibrate
+			JPanel calibPan = new JPanel(new GridLayout(2, 1));
+			TitledBorder tiledBorder3 = BorderFactory
+					.createTitledBorder(
+							BorderFactory.createLineBorder(Color.black),
+							"Set up probe");
+			tiledBorder3.setTitleColor(JHealerColors.TEXT_COLOR);
+			calibPan.setBorder(tiledBorder3);
 
-            _calibBut = new JButton("set up");
-            _calibBut.setPreferredSize(new Dimension(100, 20));
-            _calibBut.setEnabled(false);
-            _calibBut.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e)
-                {
-                    if (_calibBut.isEnabled() == true)
-                    {
-                        super.mousePressed(e);
+			_calibLab = new JTextArea("\n");
+			// JPanel calibLabPan = new JPanel(new
+			// FlowLayout(FlowLayout.CENTER));
+			// calibLabPan.add(_calibLab);
 
-                        Runnable runnable = new Runnable() {
-                            public void run()
-                            {
-                                _calibBut.setEnabled(false);
-                                _calibBut.setText("in progess...");
-                                try
-                                {
-                                    ColorHealerModel._instance.setTarget(new SimpleQuatuorTarget(Float.valueOf(gammaTex
-                                            .getText()), Float.valueOf(lumTex.getText()), _selectedIlluminant,
-                                            _selectedPrimaries));
-                                    AbstractProbe probe = ColorHealerModel._instance.getProbe();
-                                    probe.open(null);
-                                    if (probe instanceof CS200Probe)
-                                    {
-                                        CS200Probe cs200Probe = (CS200Probe) probe;
-                                        try
-                                        {
-                                            cs200Probe.setSyncAndFrequency(1, Integer.valueOf(_frequencyTextField
-                                                    .getText()) * 100);
-                                            cs200Probe.setSpeed(5, Integer.valueOf(_durationTextField
-                                                    .getText()));
-                                        }
-                                        catch (Exception e2)
-                                        {}
-                                    }
-                                    valid();
-                                    unLockDependantStep();
-                                    _calibLab.setText(_selectedProbe.getName() + " is calibrated.");
+			_calibBut = new JButton("set up");
+			_calibBut.setPreferredSize(new Dimension(100, 20));
+			_calibBut.setEnabled(false);
+			_calibBut.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					if (_calibBut.isEnabled() == true) {
+						super.mousePressed(e);
 
-                                }
-                                catch (Exception e1)
-                                {
-                                    JOptionPane.showMessageDialog(null, e1.getMessage() + e1.getLocalizedMessage(),
-                                            "Probe error", JOptionPane.ERROR_MESSAGE);
-                                    System.out.println(e1.getMessage() + e1.getLocalizedMessage());
-                                }
-                                finally
-                                {
-                                    _calibBut.setEnabled(true);
-                                    _calibBut.setText("set up");
-                                }
-                            }
-                        };
-                        Thread thread = new Thread(runnable, "probeListe");
-                        thread.start();
+						Runnable runnable = new Runnable() {
+							public void run() {
+								_calibBut.setEnabled(false);
+								_calibBut.setText("in progess...");
+								try {
 
-                    }
-                }
-            });
-            calibPan.setPreferredSize(new Dimension(_width - 2, 100));
-            GridBagConstraints con1 = new GridBagConstraints();
-            calibPan.setSize(new Dimension(_width - 2, 100));
-            _frequencyPanel = new JPanel(new GridBagLayout());
-            JLabel freqLab = new JLabel("Frequency  : ");
-            JLabel freqLegendLab = new JLabel(" Hz (40-200)");
-            _frequencyTextField = new JTextField("");
-            _durationTextField = new JTextField("");
-            Dimension tfDim = new Dimension(150, 20);
-            _frequencyTextField.setPreferredSize(tfDim);
-            _frequencyTextField.setSize(tfDim);
-            _frequencyTextField.setMinimumSize(tfDim);
-            _durationTextField.setPreferredSize(tfDim);
-            _durationTextField.setSize(tfDim);
-            _durationTextField.setMinimumSize(tfDim);
-            con1.gridx = 0;
-            con1.gridy = 0;
-            con1.insets = new Insets(1, 2, 1, 1);
-            _frequencyPanel.add(freqLab);
-            con1.gridx++;
-            _frequencyPanel.add(_frequencyTextField, con1);
-            con1.gridx++;
-            _frequencyPanel.add(freqLegendLab, con1);
-            _frequencyPanel.setVisible(false);
-            con1.gridx = 0;
-            con1.gridy++;
-            _frequencyPanel.add(new JLabel("Mes duration : "), con1);
-            con1.gridx++;
-            _frequencyPanel.add(_durationTextField, con1);
-            JPanel flowPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            flowPan.add(_calibBut);
-            //
-            calibPan.setLayout(new GridBagLayout());
+									if (_lastSelectedProbe != null
+											&& _lastSelectedProbe.isOpen()) {
+										_lastSelectedProbe.close();
+									}
 
-            con1.gridx = 0;
-            con1.gridy = 0;
-            calibPan.add(_calibLab, con1);
-            con1.gridy = 1;
-            calibPan.add(_frequencyPanel, con1);
-            con1.gridy = 2;
-            calibPan.add(flowPan, con1);
-            calibPan.validate();
-            // ///
-            container.add(probePan);
-            container.add(targetPan);
-            container.add(calibPan);
-            _tabPane.add(_name, container);
-            getContentPane().add(_tabPane, BorderLayout.CENTER);
-            _isInit = true;
+									ColorHealerModel._instance
+											.setTarget(new SimpleQuatuorTarget(
+													Float.valueOf(gammaTex
+															.getText()),
+													Float.valueOf(lumTex
+															.getText()),
+													_selectedIlluminant,
+													_selectedPrimaries));
+									AbstractProbe probe = ColorHealerModel._instance
+											.getProbe();
 
-        }
-    }
+									probe.open("");
+									if (probe instanceof CS200Probe) {
+										CS200Probe cs200Probe = (CS200Probe) probe;
+										try {
+											cs200Probe
+													.setSyncAndFrequency(
+															1,
+															Integer.valueOf(_frequencyTextField
+																	.getText()) * 100);
+											cs200Probe.setSpeed(5, Integer
+													.valueOf(_durationTextField
+															.getText()));
+										} catch (Exception e2) {
+										}
+									}
+									valid();
+									unLockDependantStep();
 
-    public void unLock()
-    {
-        _status = _oldStatus;
-    }
+									_calibLab.setText(_selectedProbe.getName()
+											+ " is ready.");
 
-    public void valid()
-    {
-        _status = _oldStatus = StepStatus.OK;
-        unLockDependantStep();
-        ITarget target = ColorHealerModel._instance.getTarget();
-        _description = _selectedProbe.getName() + "\n" + target.getColorTemp().getName() + ", " + target.getGamma()
-                + ", " + target.getMaxLum() + " cda/mï¿½.";
-        _tabPane.repaint();
-        ColorHealerGui.mainWindow.rePaintMenu();
-    }
+								} catch (Exception e1) {
+									JOptionPane.showMessageDialog(
+											null,
+											e1.getMessage()
+													+ e1.getLocalizedMessage(),
+											"Probe error",
+											JOptionPane.ERROR_MESSAGE);
+									System.out.println(e1.getMessage()
+											+ e1.getLocalizedMessage());
+								} finally {
+									_calibBut.setEnabled(true);
+									_calibBut.setText("set up");
+								}
+							}
+						};
+						Thread thread = new Thread(runnable, "probeListe");
+						thread.start();
 
-    public void lock(String reasons)
-    {
-        if (_status == StepStatus.OK)
-        {
-            if (reasons.compareTo("PROBE_MEASURES") == 0)
-            {
-                _oldStatus = _status;
-                _status = StepStatus.DISABLE;
-            }
-            else
-            {
-                _status = StepStatus.NOT_COMPLETE;
-                if (reasons.compareTo("COLOR_TEMP_CHANGED") == 0)
-                {
-                    _description = "Color temperature was changed.\nCalibrate your probe. ";
-                }
-                else if (reasons.compareTo("PRIMARIES_CHANGED") == 0)
-                {
-                    _description = "Primaries were changed.\nCalibrate your probe. ";
-                }
-                else if (reasons.compareTo("DEVICE_TYPE_CHANGED") == 0)
-                {
-                    _description = "Device type was changed.\nCalibrate your probe. ";
-                }
-                else if (reasons.compareTo("PROBE_CHANGE") == 0)
-                {
-                    _description = "Probe type was changed.\nCalibrate your probe. ";
+					}
+				}
+			});
+			calibPan.setPreferredSize(new Dimension(_width - 2, 100));
+			GridBagConstraints con1 = new GridBagConstraints();
+			calibPan.setSize(new Dimension(_width - 2, 100));
+			_frequencyPanel = new JPanel(new GridBagLayout());
+			JLabel freqLab = new JLabel("Frequency  : ");
+			JLabel freqLegendLab = new JLabel(" Hz (40-200)");
+			_frequencyTextField = new JTextField("");
+			_durationTextField = new JTextField("");
+			Dimension tfDim = new Dimension(150, 20);
+			_frequencyTextField.setPreferredSize(tfDim);
+			_frequencyTextField.setSize(tfDim);
+			_frequencyTextField.setMinimumSize(tfDim);
+			_durationTextField.setPreferredSize(tfDim);
+			_durationTextField.setSize(tfDim);
+			_durationTextField.setMinimumSize(tfDim);
+			con1.gridx = 0;
+			con1.gridy = 0;
+			con1.insets = new Insets(1, 2, 1, 1);
+			_frequencyPanel.add(freqLab);
+			con1.gridx++;
+			_frequencyPanel.add(_frequencyTextField, con1);
+			con1.gridx++;
+			_frequencyPanel.add(freqLegendLab, con1);
+			_frequencyPanel.setVisible(false);
+			con1.gridx = 0;
+			con1.gridy++;
+			_frequencyPanel.add(new JLabel("Mes duration : "), con1);
+			con1.gridx++;
+			_frequencyPanel.add(_durationTextField, con1);
+			JPanel flowPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			flowPan.add(_calibBut);
+			//
+			calibPan.setLayout(new GridBagLayout());
 
-                }
-                else if (reasons.compareTo("GAMMA_CHANGED") == 0)
-                {
-                    _description = "Gamma was changed.\nCalibrate your probe. ";
-                }
-                else if (reasons.compareTo("LUM_CHANGED") == 0)
-                {
-                    _description = "Max lum was changed.\nCalibrate your probe. ";
-                }
-                _calibLab.setText(ColorHealerModel._instance.getProbe().getProbeDescription());
-            }
+			con1.gridx = 0;
+			con1.gridy = 0;
+			calibPan.add(_calibLab, con1);
+			con1.gridy = 1;
+			calibPan.add(_frequencyPanel, con1);
+			con1.gridy = 2;
+			calibPan.add(flowPan, con1);
+			calibPan.validate();
+			// ///
+			container.add(probePan);
+			container.add(targetPan);
+			container.add(calibPan);
+			_tabPane.add(_name, container);
+			getContentPane().add(_tabPane, BorderLayout.CENTER);
+			_isInit = true;
 
-            _tabPane.repaint();
-            ColorHealerGui.mainWindow.rePaintMenu();
-        }
-    }
+		}
+	}
+
+	public void unLock() {
+		_status = _oldStatus;
+	}
+
+	public void valid() {
+		_status = _oldStatus = StepStatus.OK;
+		unLockDependantStep();
+		ITarget target = ColorHealerModel._instance.getTarget();
+		_description = _selectedProbe.getName() + "\n"
+				+ target.getColorTemp().getName() + ", " + target.getGamma()
+				+ ", " + target.getMaxLum() + " cda/m².";
+		_tabPane.repaint();
+		ColorHealerGui.mainWindow.rePaintMenu();
+	}
+
+	public void lock(String reasons) {
+		if (_status == StepStatus.OK) {
+			if (reasons.compareTo("PROBE_MEASURES") == 0) {
+				_oldStatus = _status;
+				_status = StepStatus.DISABLE;
+			} else {
+				_status = StepStatus.NOT_COMPLETE;
+				if (reasons.compareTo("COLOR_TEMP_CHANGED") == 0) {
+					_description = "Color temperature was changed.\nCalibrate your probe. ";
+				} else if (reasons.compareTo("PRIMARIES_CHANGED") == 0) {
+					_description = "Primaries were changed.\nCalibrate your probe. ";
+				} else if (reasons.compareTo("DEVICE_TYPE_CHANGED") == 0) {
+					_description = "Device type was changed.\nCalibrate your probe. ";
+				} else if (reasons.compareTo("PROBE_CHANGE") == 0) {
+					_description = "Probe type was changed.\nCalibrate your probe. ";
+
+				} else if (reasons.compareTo("GAMMA_CHANGED") == 0) {
+					_description = "Gamma was changed.\nCalibrate your probe. ";
+				} else if (reasons.compareTo("LUM_CHANGED") == 0) {
+					_description = "Max lum was changed.\nCalibrate your probe. ";
+				}
+				_calibLab.setText(ColorHealerModel._instance.getProbe()
+						.getProbeDescription());
+			}
+
+			_tabPane.repaint();
+			ColorHealerGui.mainWindow.rePaintMenu();
+		}
+	}
 
 }

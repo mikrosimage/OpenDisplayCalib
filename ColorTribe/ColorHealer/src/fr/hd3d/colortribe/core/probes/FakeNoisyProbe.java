@@ -112,4 +112,8 @@ class FakeNoisyProbe extends AbstractProbe
     {
         return "Serial killer";
     }
+
+	public boolean isSpecificCalibrationRequired() {
+		return false;
+	}
 }

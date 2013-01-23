@@ -225,8 +225,13 @@ public class ValidationStep extends Step
         AbstractProbe probe = ColorHealerModel._instance.getProbe();
         if(probe instanceof GammaProbeAndColorProbe){
             GammaProbeAndColorProbe gammaColorProbe = (GammaProbeAndColorProbe) probe;
-            gammaColorProbe.selectGammaProbe();
-            JOptionPane.showConfirmDialog(null,
+            try {
+				gammaColorProbe.selectGammaProbe();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            JOptionPane.showMessageDialog(null,
                     "Use " +  gammaColorProbe.getSelectedProbeType() + " here !", "Select right probe",
                     JOptionPane.OK_OPTION);
         }

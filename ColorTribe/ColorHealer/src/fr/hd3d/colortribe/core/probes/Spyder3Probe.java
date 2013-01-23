@@ -130,4 +130,8 @@ class Spyder3Probe extends AbstractProbe
         return "SN " + _serialNumber + " Dll " + _dllVersion + " HW" + _hardWareVersion;
     }
 
+	public boolean isSpecificCalibrationRequired() {
+		return false;
+	}
+
 }

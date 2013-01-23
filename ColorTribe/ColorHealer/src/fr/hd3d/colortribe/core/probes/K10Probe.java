@@ -99,5 +99,9 @@ public class K10Probe extends AbstractProbe
         return new Point3f(x, y, Y);// fff //ciexyY
     }
 
+	public boolean isSpecificCalibrationRequired() {
+		return false;
+	}
+
 
 }

@@ -41,5 +41,6 @@ public interface IProbe
     public String getProbeDescription();
     public EProbeType getEProbeType();
     public String getSerialInfo();
+    public boolean isSpecificCalibrationRequired();
 
 }
