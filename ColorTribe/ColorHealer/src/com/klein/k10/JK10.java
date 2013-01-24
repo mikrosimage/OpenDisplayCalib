@@ -7,15 +7,15 @@ import com.sun.jna.win32.StdCallLibrary;
 
 public class JK10
 {
-    static private class XYZ extends Structure
+    static public class XYZ extends Structure
     {
-        private static class ByValue extends XYZ implements Structure.ByValue
+    	public static class ByValue extends XYZ implements Structure.ByValue
         {
         }
 
-        private float X;
-        private float Y;
-        private float Z;
+    	public float X;
+    	public float Y;
+    	public float Z;
 		public float getX() {
 			return X;
 		}
@@ -66,13 +66,13 @@ public class JK10
     }
 
     //test
-    // public static void main(String[] args)
-    // {
-    // String port = JK10.isConnected();
-    // String serial = JK10.init(port);
-    // System.out.println(port + " " + serial);
-    // float[] res = JK10.getXYZ();
-    // System.out.println(res[0] + " " + res[1] + " " + res[2]);
-    // JK10.release();
-    // }
+     public static void main(String[] args)
+     {
+     String port = JK10.isConnected();
+     String serial = JK10.init(port);
+     System.out.println(port + " " + serial);
+     float[] res = JK10.getXYZ();
+     System.out.println(res[0] + " " + res[1] + " " + res[2]);
+     JK10.release();
+     }
 }
