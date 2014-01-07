@@ -36,7 +36,7 @@ QColorCalibPage::QColorCalibPage(const ZooperDisplayDevice & dispDev,
 
 
 	if (!model.isQTIndexDisorder()) {
-		_calibWindow = new QCalibWindow(_dispDev.getOSIndex());
+		_calibWindow = new QCalibWindow(_dispDev.getDesktopIndex());
 	} else
 		_calibWindow = new QCalibWindow(!_dispDev.getOSIndex());
 

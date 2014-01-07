@@ -23,7 +23,7 @@
 #include <sstream>
 
 QCalibWindow::QCalibWindow(unsigned int qtScreenIndex) :
-	QWidget(NULL, Qt::FramelessWindowHint), _mousePressed(false) {
+	QWidget(NULL), _mousePressed(false) {
 	setWindowTitle(tr("Calib"));
 	setWindowIcon(QIcon("./img/icon.png"));
 	_drawArea = new QDrawArea();
