@@ -247,6 +247,7 @@ void ZooperLocalHost::searchDisorders() {
 	}
 	//// find OSID PB (osID 1 alors qu'il n'ya qu'1 ecran par exemple)
 	int found = 0;
+	// FIXME calibable => calibratable ?
 	for (unsigned int i = 0; i < _calibableScreenNumber; i++) {
 		found = getDisplayIndexFromOSID(i);
 		if (found == -1) {
@@ -256,6 +257,8 @@ void ZooperLocalHost::searchDisorders() {
 	if (found == -1) {
 		os << "Numbering issue" << endl;
 		for (unsigned int i = 0; i < _calibableScreenNumber; i++) {
+			// FIXME : if _calibableDevices is empty, it simply raise an out of range exception
+			// and gently abort
 			ZooperDisplayDevice* disp = &(_calibrableDevices.at(i));
 			os << "-> Renumbering " << disp->getFullName() << " from "
 					<< disp->getOSIndex() << " to " << i << endl;
