@@ -340,7 +340,7 @@ const ZooperDisplayDevice& ZooperLocalHost::getCalibrableDisplayDevice(
 }
 const ZooperDisplayDevice& ZooperLocalHost::getNotCalibrableDisplayDevice(
 		const unsigned int &index) const {
-	if (index >= 0 && index < getNotCalibrableDisplayDeviceNumber())
+	if (index < getNotCalibrableDisplayDeviceNumber())
 		return _notCalibrableDevices.at(index);
 	ostringstream os;
 	os << "Screen not found" << index << endl;
@@ -397,8 +397,11 @@ unsigned int ZooperLocalHost::deducePrimaryScreenID() const {
 							////////////// new method //////////////
 							ostringstream os;
 
-							if(found-3<0 && found+1>= line.size() )
-							continue;
+							// FIXME found-3<0 found is an unsigned int and 3 is considered as
+							// an unsigned int, so found-3<0 is always false and continue is never executed
+							// What was the original idea here ?
+							//if(found-3<0 && found+1>= line.size() )
+							//continue;
 							std::string mask = line.substr(found -3,5 );
 
 							os <<
