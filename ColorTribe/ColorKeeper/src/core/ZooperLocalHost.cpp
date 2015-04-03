@@ -47,6 +47,8 @@ using namespace std;
 
 void ZooperLocalHost::searchDisorders() {
 
+    // NOTE CYRIL : the following code initialize the members, so
+    // wouldn't it be better in an initialize function ?
 	QSettings settings(getIniFilePath(), QSettings::IniFormat);
 	QDesktopWidget* qdw = QApplication::desktop();
 	///// retrieve metrics
@@ -203,7 +205,7 @@ void ZooperLocalHost::searchDisorders() {
 						ZooperDisplayDevice display((*it));
 						_calibrableDevices.push_back(display);
 						break;
-					}
+					}	
 				}
 				if (!found) {
 					missingID.push_back(i);
@@ -280,14 +282,13 @@ int ZooperLocalHost::getDisplayIndexFromOSID(const unsigned int &osIndex) const 
 	return -1;
 }
 
-ZooperLocalHost::ZooperLocalHost() :
-	_isXScreenDisorder(false), _isQTIndexDisorder(false),
-			_isQTNbScreenDisorder(false), _isSeparateXScreenDisorder(false),
-			_isPlugged_But_UnusedScreenDisorder(false), _isMoreDesktopThanEdid(
-					false), _isUnexpectedIssue(false) {
+ZooperLocalHost::ZooperLocalHost()
+	: _isXScreenDisorder(false), _isQTIndexDisorder(false),
+	  _isQTNbScreenDisorder(false), _isSeparateXScreenDisorder(false),
+	  _isPlugged_But_UnusedScreenDisorder(false), _isMoreDesktopThanEdid(false),
+	  _isUnexpectedIssue(false) {
 	searchDisorders();
 }
-
 
 QString ZooperLocalHost::getIniFilePath() const {
 	QString message("./conf/");
