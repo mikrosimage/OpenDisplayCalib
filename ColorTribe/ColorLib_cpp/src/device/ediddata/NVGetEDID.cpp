@@ -13,7 +13,7 @@
 
 using namespace std;
 
-static char *display_device_name(int mask)
+static const char *display_device_name(int mask)
 {
 	switch (mask) {
 		case (1 << 0): return "CRT-0"; break;
@@ -56,7 +56,7 @@ NVGetEDID::getEDID(vector<EDIDData> &edidDataVector )
 	Bool ret;
 	int screen, display_devices, mask;
 
-	int nDisplayDevice;
+	//int nDisplayDevice;
 
 	/*
 	 * Open a display connection, and make sure the NV-CONTROL X
@@ -94,7 +94,7 @@ NVGetEDID::getEDID(vector<EDIDData> &edidDataVector )
 		return NOT_A_NV_SCREEN_ERROR;
 	}
 
-	nDisplayDevice = 0;
+	//nDisplayDevice = 0;
 	for (mask = 1; mask < (1 << 24); mask <<= 1) {
 
 		if (display_devices & mask) {
@@ -194,8 +194,8 @@ int NVGetEDID::getNVControlPrimaryScreen(std::map<std::string,std::string> &mask
 	Bool ret;
 	int screen, display_devices, mask;
 	char *str;
-	char *displayDeviceNames[8];
-	int nDisplayDevice;
+	//char *displayDeviceNames[8];
+	//int nDisplayDevice;
 
 	/*
 	 * Open a display connection, and make sure the NV-CONTROL X
@@ -219,7 +219,7 @@ int NVGetEDID::getNVControlPrimaryScreen(std::map<std::string,std::string> &mask
 		return 1;
 	}
 
-	nDisplayDevice = 0;
+	//nDisplayDevice = 0;
 	for (mask = 1; mask < (1 << 24); mask <<= 1) {
 
 		if (display_devices & mask) {
@@ -227,7 +227,7 @@ int NVGetEDID::getNVControlPrimaryScreen(std::map<std::string,std::string> &mask
 			XNVCTRLQueryStringAttribute(dpy, screen, mask,
 					NV_CTRL_STRING_DISPLAY_DEVICE_NAME,
 					&str);
-			displayDeviceNames[nDisplayDevice++] = str;
+			//displayDeviceNames[nDisplayDevice++] = str;
 			maskToName.insert(std::make_pair(display_device_name(mask), str));
 
 		}

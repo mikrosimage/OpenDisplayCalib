@@ -70,7 +70,7 @@ void QDrawArea::drawGrayRamp() {
 	glEnd();
 }
 
-void QDrawArea::drawImage(const QString &path) {
+void QDrawArea::drawImage(const QString &) {
 	if (_mustRebind) {
 		std::map<QString, ImageTexture>::iterator it = _imagesTextures.find(
 				_imagePath);

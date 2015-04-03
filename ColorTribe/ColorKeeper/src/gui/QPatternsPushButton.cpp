@@ -23,7 +23,7 @@ QPatternsPushButton::QPatternsPushButton(QCalibWindow * calibWindow,
 QPatternsPushButton::~QPatternsPushButton() {
 }
 
-void QPatternsPushButton::mousePressEvent(QMouseEvent *event) {
+void QPatternsPushButton::mousePressEvent(QMouseEvent *) {
 	_refCalibWindow->showWin();
 	_refCalibWindow->setImagePath(_path);
 	_refCalibWindow->setMode(QDrawArea::IMAGE);

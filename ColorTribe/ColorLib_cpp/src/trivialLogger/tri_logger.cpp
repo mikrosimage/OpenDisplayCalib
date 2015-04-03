@@ -116,7 +116,7 @@ namespace detail
 	 points lhs.
 	 */
 	template < typename Char_type >
-	size_t const str_cat ( Char_type *& lhs, Char_type const * rhs )
+	size_t str_cat ( Char_type *& lhs, Char_type const * rhs )
 	{
 		size_t len = 0;
 		while ( *rhs != '\0' )
@@ -132,7 +132,7 @@ namespace detail
 	/// Function calculates length of C string
 	/// It can be used with wide characters
 	template < typename Char_type >
-	size_t const str_len ( Char_type const * str )
+	size_t str_len ( Char_type const * str )
 	{
 		size_t len = 0;
 		while ( *str != '\0' )
@@ -152,7 +152,7 @@ namespace detail
 	 * C string.
 	 */
 	template < typename Char_type >
-	size_t const str_cpy ( Char_type *& lhs, Char_type const * rhs )
+	size_t str_cpy ( Char_type *& lhs, Char_type const * rhs )
 	{
 		size_t len = 0;
 		while ( *rhs != '\0' )
@@ -174,7 +174,7 @@ namespace detail
 	 * Lengths of C strings has to be proper.
 	 */
 	template < typename Char_type >
-	size_t const
+	size_t 
 	createfilename ( Char_type * result,
 			Char_type const * filename,
 			Char_type const * ext,

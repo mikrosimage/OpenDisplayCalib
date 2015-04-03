@@ -19,7 +19,7 @@ public:
 	HealerCalibModel(const HealerCalibModel & calib);
 	HealerCalibModel& operator=(const HealerCalibModel & calib);
 
-	const unsigned int getScreenIndex() const {
+	unsigned int getScreenIndex() const {
 		return _screenIndex;
 	}
 	void setSize(const unsigned int &size) {

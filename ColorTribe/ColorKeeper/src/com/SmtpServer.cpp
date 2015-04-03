@@ -786,7 +786,7 @@ void Letter::on_read() {
 
 }
 
-void Letter::error_happens(QAbstractSocket::SocketError socketError) {
+void Letter::error_happens(QAbstractSocket::SocketError ) {
 	emit sendingProcessState(tr("Error: %1") .arg(sslSocket.errorString()));
 
 	qDebug() << sslSocket.errorString();

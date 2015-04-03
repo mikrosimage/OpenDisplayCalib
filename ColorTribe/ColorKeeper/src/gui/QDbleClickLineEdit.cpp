@@ -18,7 +18,7 @@ QDbleClickLineEdit::QDbleClickLineEdit(const float &defaultValue) :
 QDbleClickLineEdit::~QDbleClickLineEdit() {
 }
 
-bool QDbleClickLineEdit::eventFilter(QObject* o, QEvent* e) {
+bool QDbleClickLineEdit::eventFilter(QObject*, QEvent* e) {
 	if (e->type() == QEvent::MouseButtonDblClick) {
 //		setValue(0.0f);
 		setText(QString::number(_defaultValue));

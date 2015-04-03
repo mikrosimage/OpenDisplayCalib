@@ -31,7 +31,7 @@ connect(&(ColorKeeperModel::Instance()), SIGNAL(plChanged(unsigned int, float, C
 QPLSlider::~QPLSlider() {
 }
 
-bool QPLSlider::eventFilter(QObject* o, QEvent* e) {
+bool QPLSlider::eventFilter(QObject*, QEvent* e) {
 	if (e->type() == QEvent::MouseButtonDblClick) {
 		setSliderPosition(getSliderValue(0.0));
 

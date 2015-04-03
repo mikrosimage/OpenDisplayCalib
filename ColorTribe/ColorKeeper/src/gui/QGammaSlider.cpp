@@ -23,7 +23,7 @@ connect(&(ColorKeeperModel::Instance()), SIGNAL(gammaChanged(unsigned int, float
 QGammaSlider::~QGammaSlider() {
 }
 
-bool QGammaSlider::eventFilter(QObject* o, QEvent* e) {
+bool QGammaSlider::eventFilter(QObject*, QEvent* e) {
 	if (e->type() == QEvent::MouseButtonDblClick) {
 		setSliderPosition(getSliderValue(1.0));
 

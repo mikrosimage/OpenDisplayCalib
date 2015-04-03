@@ -112,11 +112,11 @@ void QCalibWindow::mousePressEvent(QMouseEvent *event) {
 	_mousePressed = true;
 }
 
-void QCalibWindow::mouseReleaseEvent(QMouseEvent *event) {
+void QCalibWindow::mouseReleaseEvent(QMouseEvent *) {
 	_mousePressed = false;
 }
 
-void QCalibWindow::mouseMoveEvent(QMouseEvent * event) {
+void QCalibWindow::mouseMoveEvent(QMouseEvent *event) {
 	if (_mousePressed) {
 		int currentMouseX = event->x();
 		int currentMouseY = event->y();
@@ -130,7 +130,7 @@ void QCalibWindow::mouseMoveEvent(QMouseEvent * event) {
 	}
 }
 
-void QCalibWindow::mouseDoubleClickEvent(QMouseEvent * event) {
+void QCalibWindow::mouseDoubleClickEvent(QMouseEvent * ) {
 	ColorKeeperModel& model = ColorKeeperModel::Instance();
 	model.setCalibWindowsZoom(1);
 	model.setCalibWindowsTranslate(0, 0);

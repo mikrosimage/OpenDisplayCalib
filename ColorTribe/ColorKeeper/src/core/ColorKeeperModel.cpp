@@ -185,6 +185,8 @@ void CronThread::run()
 
 }
 
+// FIXME : compiler warning: base class ‘class QObject’ should be explicitly initialized in the copy constructor [-Wextra]
+// TODO : Understand why the copy constructor does not copy anything
 ColorKeeperModel::ColorKeeperModel(const ColorKeeperModel &) {
 }
 

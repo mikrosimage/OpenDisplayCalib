@@ -109,7 +109,7 @@ void QBalloonDialog::openURL(const QString & url) {
 	QDesktopServices::openUrl(QUrl(url));
 }
 
-void QBalloonDialog::paintEvent(QPaintEvent *event) {
+void QBalloonDialog::paintEvent(QPaintEvent *) {
 	QPainter painter(this);
 
 	QBrush background(QColor(23, 23, 34, 0));

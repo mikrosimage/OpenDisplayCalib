@@ -49,7 +49,7 @@ LRMIGetEDID::read_edid( unsigned controller, vector<EDIDData> &edidDataVector )
 	LRMI_regs regs;
 
 	byte* block;
-	byte* buffer;
+	//byte* buffer;
 	byte* pointer;
 	static unsigned int iteration = 0;
 	block = (byte*)LRMI_alloc_real( EDID_BLOCK_SIZE );
@@ -60,7 +60,7 @@ LRMIGetEDID::read_edid( unsigned controller, vector<EDIDData> &edidDataVector )
 		return MEMORY_ERROR;
 	}
 
-	buffer = block;
+	//buffer = block;
 
 	unsigned counter;
 

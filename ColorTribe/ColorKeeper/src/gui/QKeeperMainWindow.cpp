@@ -213,7 +213,7 @@ void QKeeperMainWindow::closeEvent(QCloseEvent *event) {
 
 void QKeeperMainWindow::showMessage(QString title, QString message,
 		bool weAreInTrouble) {
-	QRect sysTrayGeom = _trayIcon->geometry();
+	//QRect sysTrayGeom = _trayIcon->geometry();
 	QPoint position;
 #ifdef __linux__
 	position = pos();

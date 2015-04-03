@@ -21,7 +21,7 @@ QPatternsWidgetItem::QPatternsWidgetItem(QCalibWindow * calibWindow,
 QPatternsWidgetItem::~QPatternsWidgetItem() {
 }
 
-void QPatternsWidgetItem::mousePressEvent(QMouseEvent *event) {
+void QPatternsWidgetItem::mousePressEvent(QMouseEvent *) {
 	_refCalibWindow->showWin();
 	_refCalibWindow->setImagePath(_path);
 	_refCalibWindow->setMode(QDrawArea::IMAGE);

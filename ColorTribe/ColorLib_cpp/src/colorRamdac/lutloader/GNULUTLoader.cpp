@@ -35,7 +35,7 @@ int GNULUTLoader::setGammaRamp(const int screenIndex,
 		throw CannotGetLutException("XF86VidModeGetGammaRampSize returned false.");
 	}
 
-	int rampSize = lut->getRampSize();
+	//int rampSize = lut->getRampSize();
 
 	//printf("card size : %d, lut size : %d \n", *cardRampSize, rampSize);
 
