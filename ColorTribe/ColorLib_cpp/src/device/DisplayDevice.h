@@ -64,7 +64,7 @@ public:
 
 	const std::string getFullText() const;
 
-	const long getSerialNumber() const {
+	long getSerialNumber() const {
 		return _serialNumber;
 	}
 
@@ -72,19 +72,19 @@ public:
 		return _serialSNNumber;
 	}
 
-	const unsigned char getWeekOfManufacture() const {
+	unsigned char getWeekOfManufacture() const {
 		return _weekOfManufacture;
 	}
 
-	const unsigned int getYearOfManufacture() const {
+	unsigned int getYearOfManufacture() const {
 		return _yearOfManufacture;
 	}
 
-	const unsigned int getVideoOutputIndex() const {
+	unsigned int getVideoOutputIndex() const {
 		return _videoOutputIndex;
 	}
 
-	const DisplayDeviceType getType() const {
+	DisplayDeviceType getType() const {
 		return _type;
 	}
 	const std::string getStringType() const {
