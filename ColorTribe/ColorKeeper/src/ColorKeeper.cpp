@@ -8,7 +8,6 @@
 #include "gui/GuiLoader.h"
 #include "core/ColorKeeperModel.h"
 
-#include <boost/shared_ptr.hpp>
 #include <cstdlib>
 #include <exception>
 #include <stdlib.h>
@@ -67,7 +66,7 @@ strsignal(int s)
 
 using namespace std;
 
-typedef boost::shared_ptr<GuiLoader> ptrGUILoader;
+typedef QSharedPointer<GuiLoader> ptrGUILoader;
 
 bool alreadyDone = false;
 
